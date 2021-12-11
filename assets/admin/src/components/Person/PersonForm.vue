@@ -28,6 +28,17 @@
               ></person-simple-form>
             </b-col>
           </b-row>
+          <b-row>
+            <b-col
+              v-for="(child, index) in formPerson.children"
+              v-bind:key="child.id"
+            >
+              <person-simple-form
+                :label="labels.child + (index + 1).toString()"
+                :person="formPerson.children[index]"
+              ></person-simple-form>
+            </b-col>
+          </b-row>
           <b-button type="submit" variant="primary"
             >{{ labels.submit }}
           </b-button>
@@ -70,7 +81,9 @@ export default {
             lastnames: "",
           },
         ],
+        children: [],
       },
+      childrenNumber: 0,
     };
   },
   watch: {
