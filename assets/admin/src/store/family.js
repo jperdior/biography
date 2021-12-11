@@ -72,6 +72,7 @@ export default {
             state.error = null;
         },
         [GETTING_FAMILY_SUCCESS](state, family) {
+            console.log(family);
             state.loading = false;
             state.error = null;
             state.family = family;

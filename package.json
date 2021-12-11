@@ -20,6 +20,9 @@
     "dependencies": {
         "axios": "^0.24.0",
         "bootstrap-vue": "^2.21.2",
+        "sass": "^1.44.0",
+        "sass-loader": "^12.4.0",
+        "vue-family-tree": "^0.1.8",
         "vuex": "^3.6.2"
     }
 }

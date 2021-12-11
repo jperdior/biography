@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\FamilyRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,13 +16,15 @@ use App\Controller\Family\CreateFamily;
  * @ORM\Entity(repositoryClass=FamilyRepository::class)
  */
 #[ApiResource(
+    normalizationContext: ['groups'=>['get']],
     collectionOperations: [
         'get',
         'post' => [
             'controller' => CreateFamily::class,
         ]
     ],
-    itemOperations: ['get', 'put', 'delete'],
+    itemOperations: [
+        'get', 'put', 'delete'],
 )]
 class Family
 {
@@ -39,6 +42,7 @@ class Family
     /**
      * @ORM\OneToMany(targetEntity="Person", mappedBy="family")
      */
+    #[Groups("get")]
     private $persons;
 
     /**

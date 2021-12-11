@@ -7,5 +7,8 @@ export default {
     },
     createFamily: function (familyData) {
         return axios.post('/api/families', familyData);
+    },
+    getFamily: function (id) {
+        return axios.get('/api/families/' + id);
     }
 }
