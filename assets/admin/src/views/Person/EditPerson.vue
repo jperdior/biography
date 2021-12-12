@@ -12,7 +12,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch("person/getPerson", this.$route.params.id);
-    this.$store.dispatch("person/getPersonLabels");
   },
   computed: {
     person() {

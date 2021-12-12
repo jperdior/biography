@@ -10,8 +10,5 @@ export default {
   components: {
     PersonForm,
   },
-  mounted() {
-    this.$store.dispatch("person/getPersonLabels");
-  },
 };
 </script>
