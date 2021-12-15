@@ -1,8 +1,21 @@
 <template>
-  <b-container fluid>
+  <b-container v-if="!isLoading">
     <b-row>
       <b-col>
+        <vue-step
+          v-if="labels"
+          :now-step="currentStep"
+          :step-list="labels.stepTitles"
+          active-color="#E92457"
+        ></vue-step>
+      </b-col>
+    </b-row>
+    <b-row >
+      <b-col>
         <b-form @submit.prevent="submitPerson" @reset="onReset">
+          <!-- Step 1 -->
+          <b-row v-show="currentStep == 1">
+            <b-col>
           <b-form-group :label="labels.name" label-for="name">
             <b-form-input
               id="name"
@@ -17,7 +30,11 @@
               required
             ></b-form-input>
           </b-form-group>
-          <b-row>
+            </b-col>
+          </b-row>
+          <!-- Step 2 -->
+          <!-- Parents -->
+          <b-row v-show="currentStep == 2">
             <b-col
               v-for="(parent, index) in formPerson.parents"
               v-bind:key="parent.id"
@@ -28,6 +45,7 @@
               ></person-simple-form>
             </b-col>
           </b-row>
+          <!-- Children -->
           <b-row>
             <b-col
               v-for="(child, index) in formPerson.children"
@@ -39,8 +57,12 @@
               ></person-simple-form>
             </b-col>
           </b-row>
+          <!-- Controls -->
           <b-button type="submit" variant="primary"
-            >{{ labels.submit }}
+            >{{ labels.save_and_continue }}
+          </b-button>
+          <b-button type="submit" variant="primary"
+            >{{ labels.save }}
           </b-button>
         </b-form>
       </b-col>
@@ -49,10 +71,12 @@
 </template>
 <script>
 import PersonSimpleForm from "./PersonSimpleForm.vue";
+import vueStep from "vue-step";
 export default {
   name: "PersonForm",
   components: {
     PersonSimpleForm,
+    vueStep
   },
   props: {
     person: {
@@ -65,6 +89,9 @@ export default {
     labels() {
       return this.$store.getters["person/personLabels"];
     },
+    isLoading(){
+      return this.$store.getters["person/loading"];
+    }
   },
   data() {
     return {
@@ -83,7 +110,7 @@ export default {
         ],
         children: [],
       },
-      childrenNumber: 0,
+      currentStep: 1,
     };
   },
   watch: {
@@ -102,10 +129,17 @@ export default {
           this.$data.formPerson
         );
       } else {
-        await this.$store.dispatch(
+        const response = await this.$store.dispatch(
           "person/createPerson",
           this.$data.formPerson
         );
+        console.log(response);
+        this.$router.push({
+            name: "EditPerson",
+            params:{
+                id: response.id
+            }
+          });
         this.$data.formPerson = {
           name: "",
           lastnames: "",

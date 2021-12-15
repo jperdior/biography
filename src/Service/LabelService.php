@@ -17,7 +17,8 @@ class LabelService{
     public function getDefaultLabels(): array{
 
         $labels = [
-            'submit' => $this->translator->trans('submit')
+            'save_and_continue' => $this->translator->trans('Save and continue'),
+            'save' => $this->translator->trans('Save')
         ];
 
         return $labels;
@@ -28,7 +29,13 @@ class LabelService{
             'son_of' => $this->translator->trans('Son of'),
             'and_of' => $this->translator->trans('and of'),
             'name' => $this->translator->trans('Name'),
-            'lastnames' => $this->translator->trans('Lastnames')
+            'lastnames' => $this->translator->trans('Lastnames'),
+            'stepTitles' => [
+                $this->translator->trans('Basic information'),
+                $this->translator->trans('Family'),
+                $this->translator->trans('Extra information'),
+                $this->translator->trans('Galleries')
+            ]
         ];
         return array_merge($labels,$this->getDefaultLabels());
     }

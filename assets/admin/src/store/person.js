@@ -17,7 +17,7 @@ export default {
     namespaced: true,
     state: {
         person: {},
-        personLabels: {},
+        personLabels: null,
         loading: false,
         error: null
     },
@@ -85,6 +85,7 @@ export default {
             try {
                 const response = await PersonApi.createPerson(person);
                 commit(CREATING_PERSON_SUCCESS, response.data);
+                return response.data;
             } catch (error) {
                 commit(CREATING_PERSON_ERROR, error);
             }
