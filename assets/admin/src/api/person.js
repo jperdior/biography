@@ -2,6 +2,9 @@ import axios from 'axios';
 
 
 export default {
+    getPersons: function () {
+        return axios.get('/api/people');
+    },
     createPerson: function (personData) {
         return axios.post('/api/people', personData);
     },
@@ -13,5 +16,5 @@ export default {
     },
     getLabels: function () {
         return axios.get('/api/people/labels');
-    }
+    },
 };

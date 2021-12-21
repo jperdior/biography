@@ -8,7 +8,7 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: () => import('../views/Family/FamilyList.vue')
+        component: () => import('../views/Person/PersonList.vue')
     },
     {
         path: '/families/:id',
@@ -21,7 +21,7 @@ const routes = [
         component: () => import('../views/Person/CreatePerson.vue')
     },
     {
-        path: '/persons/edit/:id',
+        path: '/persons/edit/:id/:step?',
         name: 'EditPerson',
         component: () => import('../views/Person/EditPerson.vue')
     }

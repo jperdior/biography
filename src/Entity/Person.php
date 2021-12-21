@@ -26,12 +26,22 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Person
 {
 
+    const MASCULINE_TREATMENT = 0;
+    const FEMENINE_TREATMENT = 1;
+    const NEUTRAL_TREATMENT = 2;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     #[Groups(["person:read","person:write"])]
     private $id;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    #[Groups(["person:read","person:write"])]
+    private $treatment;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -44,6 +54,37 @@ class Person
      */
     #[Groups(["person:read","person:write"])]
     private $lastnames;
+
+    /**
+     * @ORM\Column(type="datetime",nullable=true)
+     */
+    #[Groups(["person:read","person:write"])]
+    private $birthdate;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(["person:read","person:write"])]
+    private $birthplace;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups(["person:read","person:write"])]
+    private $deathplace;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    #[Groups(["person:read","person:write"])]
+    private $deathdate;
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    #[Groups(["person:read","person:write"])]
+    private $description;
+
 
     /**
      * @ORM\Column(type="boolean")
@@ -75,11 +116,18 @@ class Person
     #[Groups(["person:read","person:write"])]
     private $partner;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Gallery", mappedBy="person")
+     */
+    #[Groups("person:read","person:write")]
+    private $galleries;
+
     public function __construct()
     {
         $this->id = Uuid::v4();
         $this->parents = new ArrayCollection();
         $this->children = new ArrayCollection();
+        $this->galleries = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -182,6 +230,108 @@ class Person
     public function setPartner(?self $partner): self
     {
         $this->partner = $partner;
+
+        return $this;
+    }
+
+    public function getBirthdate(): ?\DateTimeInterface
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(?\DateTimeInterface $birthdate): self
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    public function getBirthplace(): ?string
+    {
+        return $this->birthplace;
+    }
+
+    public function setBirthplace(?string $birthplace): self
+    {
+        $this->birthplace = $birthplace;
+
+        return $this;
+    }
+
+    public function getDeathplace(): ?string
+    {
+        return $this->deathplace;
+    }
+
+    public function setDeathplace(?string $deathplace): self
+    {
+        $this->deathplace = $deathplace;
+
+        return $this;
+    }
+
+    public function getDeathdate(): ?\DateTimeInterface
+    {
+        return $this->deathdate;
+    }
+
+    public function setDeathdate(?\DateTimeInterface $deathdate): self
+    {
+        $this->deathdate = $deathdate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Gallery[]
+     */
+    public function getGalleries(): Collection
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): self
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries[] = $gallery;
+            $gallery->setPerson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): self
+    {
+        if ($this->galleries->removeElement($gallery)) {
+            // set the owning side to null (unless already changed)
+            if ($gallery->getPerson() === $this) {
+                $gallery->setPerson(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTreatment(): ?int
+    {
+        return $this->treatment;
+    }
+
+    public function setTreatment(?int $treatment): self
+    {
+        $this->treatment = $treatment;
 
         return $this;
     }

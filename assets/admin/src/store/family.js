@@ -59,7 +59,6 @@ export default {
         [GETTING_FAMILIES_SUCCESS](state, data) {
             state.loading = false;
             state.error = null;
-            console.log(data["hydra:member"]);
             state.families = data["hydra:member"];
         },
         [GETTING_FAMILIES_ERROR](state, error) {

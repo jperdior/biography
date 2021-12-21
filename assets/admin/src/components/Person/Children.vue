@@ -3,7 +3,7 @@
     <b-col>
       <b-row>
         <b-col>
-          <b-button>
+          <b-button variant="success" @click="addChildren()">
             {{ labels.add }}
           </b-button>
         </b-col>
@@ -16,7 +16,11 @@
           ></person-simple-form>
         </b-col>
         <b-col>
-          <b-button type="button" variant="danger">
+          <b-button
+            type="button"
+            variant="danger"
+            @click="removeChildren(index)"
+          >
             {{ labels.remove }}
           </b-button>
         </b-col>
@@ -42,6 +46,18 @@ export default {
     return {
       children: [],
     };
+  },
+  methods: {
+    addChildren() {
+      this.children.push({
+        id: null,
+        first_name: "",
+        last_name: "",
+      });
+    },
+    removeChildren(index) {
+      this.children.splice(index, 1);
+    },
   },
 };
 </script>
