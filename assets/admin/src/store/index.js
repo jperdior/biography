@@ -1,14 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import FamilyModule from './family';
+import SecurityModule from "./security";
 import PersonModule from './person';
+import FamiliarModule from './familiar';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        family: FamilyModule,
-        person: PersonModule
+        person: PersonModule,
+        security: SecurityModule,
+        familiar: FamiliarModule
     }
 });

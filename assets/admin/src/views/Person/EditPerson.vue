@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container fluid>
     <person-form :person="person"></person-form>
   </b-container>
 </template>

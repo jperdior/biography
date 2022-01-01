@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Controller\Gallery\CreateGallery;
 use App\Controller\Gallery\UpdateGallery;
 use App\Repository\GalleriesRepository;
@@ -14,39 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=GalleriesRepository::class)
  */
-#[ApiResource(
-    iri: 'http://schema.org/MediaObject',
-    order: ["id" => "ASC"],
-    itemOperations: [
-        'get',
-        'delete'
-    ],
-    collectionOperations: [
-        'get',
-        'post' => [
-            'controller' => CreateGallery::class,
-            'deserialize' => false,
-            'validation_groups' => ['Default', 'gallery_create'],
-            'openapi_context' => [
-                'requestBody' => [
-                    'content' => [
-                        'multipart/form-data' => [
-                            'schema' => [
-                                'type' => 'object',
-                                'properties' => [
-                                    'images' => [
-                                        'type' => 'string',
-                                        'format' => 'binary',
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ]
-)]
 class Gallery
 {
     /**
@@ -66,7 +32,7 @@ class Gallery
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[Groups("person:read")]
+    #[Groups("person:read","person:write")]
     private $title;
 
     /**

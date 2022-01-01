@@ -7,7 +7,10 @@
           <b-form-group :label="labels.gallery_title">
             <b-form-input v-model="title" required></b-form-input>
           </b-form-group>
-          <b-form-group :label="labels.gallery" label-for="gallery">
+          <b-form-group
+            :label="labels.gallery_add_pictures"
+            label-for="gallery"
+          >
             <b-form-file multiple v-model="images"></b-form-file>
             <div id="preview">
               <b-row>
@@ -35,7 +38,7 @@
   </b-row>
 </template>
 <script>
-import GalleryApi from "../../api/gallery.js";
+import GalleryApi from "../../../api/gallery.js";
 export default {
   name: "GalleryUploader",
   props: {
@@ -50,13 +53,20 @@ export default {
       default: null,
     },
   },
+  mounted() {
+    this.$data.title = "";
+    this.$data.images = [];
+    if (this.$props.gallery) {
+      this.$data.title = this.$props.gallery.title;
+    }
+  },
   computed: {
     labels() {
       return this.$store.getters["person/personLabels"];
     },
     uploadButtonText() {
-      if (this.$props.gallery.id) {
-        return this.labels.add_pictures;
+      if (this.$props.gallery) {
+        return this.labels.edit_gallery;
       }
       return this.labels.create_gallery;
     },
@@ -77,7 +87,7 @@ export default {
     removeImage(imageIndex) {
       this.$data.images.splice(imageIndex, 1);
     },
-    async saveGallery(galleryIndex) {
+    async saveGallery() {
       let data = new FormData();
       if (!this.$data.images.length) {
         return false;
@@ -91,23 +101,30 @@ export default {
         );
       }
 
-      if (this.$props.gallery.id) {
-        data.append("gallery_id", this.$props.gallery.id);
-        const response = await GalleryApi.updateGallery(data);
-        if (response.status === 201) {
+      if (this.$props.gallery) {
+        let params = {
+          id: this.$props.gallery.id,
+          gallery: data,
+        };
+        const response = await GalleryApi.updateGallery(params);
+        if (response.status === 200) {
           this.$toasted.success(this.labels.saved_successfully, {
             duration: 5000,
             theme: "bubble",
           });
           this.$refs.showGalleryUploader.hide();
-          this.$store.dispatch("person/getPerson", this.$props.person.id);
+          this.$emit("galleryUpdated");
         }
         return;
       }
       if (this.$props.person) {
         data.append("person_id", this.$props.person.id);
-        const response = await GalleryApi.createGallery(data);
-        if (response.status === 201) {
+        let params = {
+          id: this.$props.person.id,
+          gallery: data,
+        };
+        const response = await GalleryApi.createGallery(params);
+        if (response.status === 200) {
           this.$toasted.success(this.labels.saved_successfully, {
             duration: 5000,
             theme: "bubble",

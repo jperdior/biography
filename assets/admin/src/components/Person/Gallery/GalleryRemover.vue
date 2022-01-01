@@ -11,7 +11,7 @@
   </b-row>
 </template>
 <script>
-import GalleryApi from "../../api/gallery.js";
+import GalleryApi from "../../../api/gallery.js";
 export default {
   name: "GalleryRemover",
   props: {

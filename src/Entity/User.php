@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,10 +15,6 @@ use Symfony\Component\Uid\Uuid;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-#[ApiResource(
-    collectionOperations: ['get', 'post'],
-    itemOperations: ['get', 'put', 'delete'],
-)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
@@ -49,9 +44,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isVerified = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Person", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $persons;
+
     public function __construct()
     {
         $this->id = Uuid::v4();
+        $this->persons = new ArrayCollection();
     }
 
 
@@ -159,5 +160,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getIsVerified(): ?bool
     {
         return $this->isVerified;
+    }
+
+
+    /**
+     * @return Collection|Person[]
+     */
+    public function getPersons(): Collection
+    {
+        return $this->persons;
+    }
+
+    public function addPerson(Person $person): self
+    {
+        if (!$this->persons->contains($person)) {
+            $this->persons[] = $person;
+            $person->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePerson(Person $person): self
+    {
+        if ($this->persons->removeElement($person)) {
+            // set the owning side to null (unless already changed)
+            if ($person->getUser() === $this) {
+                $person->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

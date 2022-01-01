@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ImageRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
  */
-#[ApiResource]
 class Image
 {
     /**
@@ -26,6 +24,9 @@ class Image
      */
     #[Groups("person:read")]
     private $filePath;
+
+    #[Groups("person:read")]
+    public $filePathBase64;
 
     /**
      * @ORM\ManyToOne(targetEntity="Gallery")

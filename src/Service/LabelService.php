@@ -20,10 +20,14 @@ class LabelService{
         $labels = [
             'next' => $this->translator->trans('Next'),
             'previous' => $this->translator->trans('Previous'),
+            'save' => $this->translator->trans('Save'),
+            'save_and_continue' => $this->translator->trans('Save and continue'),
             'add' => $this->translator->trans('Add'),
             'remove' => $this->translator->trans('Remove'),
             'saved_successfully' => $this->translator->trans('Saved successfully'),
-            'and' => $this->translator->trans('and')
+            'and' => $this->translator->trans('and'),
+            'welcome' => $this->translator->trans('Welcome to Memora Plate'),
+            'upload_image' => $this->translator->trans('Upload image'),
         ];
 
         return $labels;
@@ -31,6 +35,11 @@ class LabelService{
 
     public function getPersonLabels() :array{
         $labels = [
+            'upload_picture' => $this->translator->trans('Upload picture'),
+            'parents' => $this->translator->trans('Parents'),
+            'no_persons' => $this->translator->trans('You haven\'t created any persons yet.'),
+            'create_person' => $this->translator->trans('Create person'),
+            'edit_person' => $this->translator->trans('Edit person'),
             'son_of' => $this->translator->trans('Son of'),
             'and_of' => $this->translator->trans('and of'),
             'treatment' => $this->translator->trans('Treatment'),
@@ -41,15 +50,22 @@ class LabelService{
             'deathdate' => $this->translator->trans('Deceased date'),
             'deathplace' => $this->translator->trans('Deseace place'),
             'children' => $this->translator->trans('Children'),
-            'child' => $this->translator->trans('Children'),
+            'child' => $this->translator->trans('Child'),
             'save_gallery' => $this->translator->trans('Save gallery'),
-            'add_pictures' => $this->translator->trans('Add pictures'),
+            'edit_gallery' => $this->translator->trans('Edit gallery'),
             'create_gallery' => $this->translator->trans('Create gallery'),
             'delete_gallery' => $this->translator->trans('Delete gallery'),
             'delete_gallery_warning' => $this->translator->trans("This action can't be undone. Are you sure you want to proceed?"),
             'removed_successfully' => $this->translator->trans("Removed successfully"),
             'gallery_title' => $this->translator->trans("Gallery title"),
+            'gallery_add_pictures' => $this->translator->trans('Add pictures to gallery'),
             'description' => $this->translator->trans("Biography"),
+            'add_favourite' => $this->translator->trans("Add favourite"),
+            'favorite_type' => $this->translator->trans("Favourite type"),
+            'favorite_type_placeholder' => $this->translator->trans('actors, movies, books...'),
+            'favorites' => $this->translator->trans("Favourites"),
+            'nicknames' => $this->translator->trans("Nicknames"),
+            'nicknames_placeholder' => $this->translator->trans('Add nichnames separated by commas'),
             'father_of' => $this->translator->trans("Father of"),
             'mother_of' => $this->translator->trans("Mother of"),
             'parent_to' => $this->translator->trans("Parent to"),

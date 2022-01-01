@@ -5,9 +5,42 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 class DefaultController extends AbstractController
 {
+
+    /** @var SerializerInterface */
+    private $serializer;
+
+    public function __construct(SerializerInterface $serializer)
+    {
+        $this->serializer = $serializer;
+    }
+
+    /**
+     * @Route("/{vueRouting}", name="index",requirements={"vueRouting"="^(?!api|_(profiler|wdt)).*"})
+     * @return Response
+     */
+    public function indexAction(): Response
+    {
+        $user = $this->getUser();
+        $data = null;
+        if (! empty($user)) {
+            $userClone = clone $user;
+            $userClone->setPassword('');
+            $data = $this->serializer->serialize($userClone, JsonEncoder::FORMAT,['circular_reference_handler'=> function($object){
+            return $object->getId();
+        }]);
+        }
+        return $this->render('admin/index.html.twig', [
+            'isAuthenticated' => json_encode(! empty($user)),
+            'user' => $data ?? json_encode($data),
+        ]);
+    }
+
+
     #[Route('/admin', name: 'admin')]
     public function admin(): Response
     {

@@ -6,7 +6,8 @@ namespace App\Doctrine;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
-use App\Entity\Family;
+use App\Entity\Person;
+use App\Entity\User;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Security\Core\Security;
 
@@ -31,11 +32,15 @@ final class CurrentUserExtension implements QueryCollectionExtensionInterface, Q
 
     private function addWhere(QueryBuilder $queryBuilder, string $resourceClass): void
     {
-        if (Family::class !== $resourceClass || null === $user = $this->security->getUser()) {
+        /**
+         * @var User $user
+         */
+        if (Person::class !== $resourceClass || null === $user = $this->security->getUser()) {
             return;
         }
 
         $rootAlias = $queryBuilder->getRootAliases()[0];
+
         $queryBuilder->andWhere(sprintf('%s.user = :current_user', $rootAlias));
         $queryBuilder->setParameter('current_user', $user->getId(), 'uuid');
     }

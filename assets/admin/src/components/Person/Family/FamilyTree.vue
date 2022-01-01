@@ -11,7 +11,8 @@
   </span>
 </template>
 <script>
-import VueFamilyTree from "../FamilyTree/VueFamilyTree.vue";
+import PersonApi from "../../../api/person.js";
+import VueFamilyTree from "../../FamilyTree/VueFamilyTree.vue";
 export default {
   name: "FamilyTree",
   components: {
@@ -20,8 +21,7 @@ export default {
   props: {
     person: {
       type: Object,
-      required: false,
-      default: null,
+      required: true,
     },
   },
   computed: {
@@ -41,14 +41,16 @@ export default {
             this.$props.person.parents[0].name +
             " " +
             this.$props.person.parents[0].lastnames,
+          image: this.$props.person.parents[0].mainPictureBase64,
         };
       }
       if (this.$props.person.parents[1]) {
         parentsObject.secondPerson = {
           name:
-            this.$props.person.parents[0].name +
+            this.$props.person.parents[1].name +
             " " +
-            this.$props.person.parents[0].lastnames,
+            this.$props.person.parents[1].lastnames,
+          image: this.$props.person.parents[1].mainPictureBase64,
         };
       }
       let childrenArray = [];
@@ -60,6 +62,7 @@ export default {
                 this.$props.person.children[i].name +
                 " " +
                 this.$props.person.children[i].lastnames,
+              image: this.$props.person.children[i].mainPictureBase64,
             },
           });
         }
@@ -68,6 +71,10 @@ export default {
         {
           firstPerson: {
             name: this.$props.person.name + " " + this.$props.person.lastnames,
+            image: this.$props.person.mainPictureBase64,
+          },
+          secondPerson: {
+            name: "",
           },
           children: childrenArray,
         },
@@ -79,6 +86,14 @@ export default {
   methods: {
     showFamilyTree() {
       this.$refs.familyTreeModal.show();
+    },
+    async getFamiliarImage(familiarId) {
+      const response = await PersonApi.getFamiliarMainPicture(familiarId);
+      return response.data;
+    },
+    async getPersonImage(personId) {
+      const response = await PersonApi.getPersonMainPicture(personId);
+      return response.data;
     },
   },
 };

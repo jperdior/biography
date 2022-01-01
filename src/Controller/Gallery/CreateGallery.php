@@ -31,32 +31,9 @@ class CreateGallery extends AbstractController
         else{
             $gallery = $em->getRepository(Gallery::class)->find($request->get('gallery_id'));
         }
-        $uploadPath = $this->getParameter('private_galleries_directory');
-        $images = $request->files->get('images');
-        $gallery->setTitle($request->get('title'));
-
-        foreach($images as $image){
-            $imageEntity = new Image();
-            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-            // this is needed to safely include the file name as part of the URL
-            $safeFilename = $slugger->slug($originalFilename);
-            $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
 
 
-            try {
-                $image->move(
-                    $uploadPath,
-                    $newFilename
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
-            }
 
-            $imageEntity->setFilePath($newFilename);
-            $imageEntity->setGallery($gallery);
-            $em->persist($imageEntity);
-
-        }
 
         $em->persist($gallery);
         $em->flush();

@@ -14,13 +14,17 @@ const CREATING_PERSON = 'CREATING_PERSON',
     GETTING_PERSON_LABELS_ERROR = 'GETTING_PERSON_LABELS_ERROR',
     GETTING_PERSONS = 'GETTING_PERSONS',
     GETTING_PERSONS_SUCCESS = 'GETTING_PERSONS_SUCCESS',
-    GETTING_PERSONS_ERROR = 'GETTING_PERSONS_ERROR';
+    GETTING_PERSONS_ERROR = 'GETTING_PERSONS_ERROR',
+    GETTING_MAIN_PERSON = 'GETTING_MAIN_PERSON',
+    GETTING_MAIN_PERSON_SUCCESS = 'GETTING_MAIN_PERSON_SUCCESS',
+    GETTING_MAIN_PERSON_ERROR = 'GETTING_MAIN_PERSON_ERROR';
 
 export default {
     namespaced: true,
     state: {
         persons: [],
         person: {},
+        mainPerson: {},
         personLabels: null,
         loading: false,
         error: null
@@ -28,6 +32,7 @@ export default {
     getters: {
         persons: state => state.persons,
         person: state => state.person,
+        mainPerson: state => state.mainPerson,
         loading: state => state.loading,
         error: state => state.error,
         personLabels: state => state.personLabels
@@ -89,12 +94,25 @@ export default {
         },
         [GETTING_PERSONS_SUCCESS](state, persons) {
             state.loading = false;
-            state.persons = persons["hydra:member"];
+            state.persons = persons;
         },
         [GETTING_PERSONS_ERROR](state, error) {
             state.loading = false;
             state.error = error;
             state.persons = [];
+        },
+        [GETTING_MAIN_PERSON](state) {
+            state.loading = true;
+            state.error = null;
+        },
+        [GETTING_MAIN_PERSON_SUCCESS](state, person) {
+            state.loading = false;
+            state.mainPerson = person;
+        },
+        [GETTING_MAIN_PERSON_ERROR](state, error) {
+            state.loading = false;
+            state.error = error;
+            state.mainPerson = null;
         }
     },
     actions: {
@@ -117,10 +135,19 @@ export default {
                 commit(GETTING_PERSON_ERROR, error);
             }
         },
-        async updatePerson({ commit }, person) {
+        async getMainPerson({ commit }) {
+            commit(GETTING_MAIN_PERSON);
+            try {
+                const response = await PersonApi.getMainPerson();
+                commit(GETTING_MAIN_PERSON_SUCCESS, response.data);
+            } catch (error) {
+                commit(GETTING_MAIN_PERSON_ERROR, error);
+            }
+        },
+        async updatePerson({ commit }, params) {
             commit(UPDATING_PERSON);
             try {
-                const response = await PersonApi.updatePerson(person);
+                const response = await PersonApi.updatePerson(params);
                 commit(UPDATING_PERSON_SUCCESS, response.data);
                 return response;
             } catch (error) {

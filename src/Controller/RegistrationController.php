@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Person;
+use App\Entity\Familiar;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,6 +44,19 @@ class RegistrationController extends AbstractController
             $user->setIsVerified(true);
             $entityManager->persist($user);
             $entityManager->flush();
+
+            $person = new Person();
+            $person->setUser($user);
+            $person->setMainPerson(true);
+            $parentOne = new Familiar();
+            $parentOne->setChild($person);
+            $parentTwo = new Familiar();
+            $parentTwo->setChild($person);
+            $person->addParent($parentOne);
+            $person->addParent($parentTwo);
+            $entityManager->persist($person);
+            $entityManager->flush();
+
 
             // generate a signed url and email it to the user
             // $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,

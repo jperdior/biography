@@ -12,7 +12,8 @@
         <b-col cols="10">
           <person-simple-form
             :label="labels.child + ' ' + (index + 1).toString()"
-            :person="child"
+            :familiar="child"
+            :person="person"
           ></person-simple-form>
         </b-col>
         <b-col>
@@ -48,12 +49,9 @@ export default {
     };
   },
   methods: {
-    addChildren() {
-      this.children.push({
-        id: null,
-        first_name: "",
-        last_name: "",
-      });
+    async addChildren() {
+      await this.$store.dispatch("familiar/createChild", this.$props.person.id);
+      this.$store.dispatch("person/getPerson", this.$props.person.id);
     },
     removeChildren(index) {
       this.children.splice(index, 1);

@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\PersonRepository;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,15 +13,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 /**
  * @ORM\Entity(repositoryClass=PersonRepository::class)
  */
-#[ApiResource(
-    normalizationContext: ['groups' => ['person:read']],
-    denormalizationContext: ['groups' => ['person:write']],
-    collectionOperations: [
-        'get',
-        'post'
-    ],
-    itemOperations: ['get', 'put' => ['groups' => ['person:write']], 'delete'],
-)]
+
 class Person
 {
 
@@ -34,7 +25,7 @@ class Person
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
-    #[Groups(["person:read","person:write"])]
+    #[Groups(["person:read"])]
     private $id;
 
     /**
@@ -44,16 +35,31 @@ class Person
     private $treatment;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     #[Groups(["person:read","person:write"])]
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     #[Groups(["person:read","person:write"])]
     private $lastnames;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    #[Groups("person:read")]
+    private $mainPicture;
+
+    #[Groups("person:read")]
+    public $mainPictureBase64;
+
+    /**
+     * @ORM\Column(type="json",nullable=true)
+     */
+    #[Groups(["person:read","person:write"])]
+    private $nicknames = [];
 
     /**
      * @ORM\Column(type="datetime",nullable=true)
@@ -92,21 +98,15 @@ class Person
     private $needsLogin = false;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Person", mappedBy="children", cascade={"persist"})
-     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="Familiar", mappedBy="child", cascade={"persist","remove"})
      */
-    #[Groups(["person:read","person:write"])]
+    #[Groups(["person:read"])]
     private $parents;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Person", inversedBy="parents", cascade={"persist"})
-     * @ORM\JoinTable(name="children_parents",
-     *      joinColumns={@ORM\JoinColumn(name="children_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="parent_id", referencedColumnName="id")}
-     *      )
-     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="Familiar", mappedBy="parent", cascade={"persist","remove"})
      */
-    #[Groups(["person:read","person:write"])]
+    #[Groups(["person:read"])]
     private $children;
 
     /**
@@ -122,12 +122,31 @@ class Person
     #[Groups("person:read","person:write")]
     private $galleries;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Favorite", mappedBy="person", cascade={"persist"})
+     */
+    #[Groups("person:read")]
+    private $favorites;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="person")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    public $user;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    #[Groups("person:read")]
+    public $mainPerson = false;
+
     public function __construct()
     {
         $this->id = Uuid::v4();
         $this->parents = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->galleries = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -140,7 +159,7 @@ class Person
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -152,7 +171,7 @@ class Person
         return $this->lastnames;
     }
 
-    public function setLastnames(string $lastnames): self
+    public function setLastnames(?string $lastnames): self
     {
         $this->lastnames = $lastnames;
 
@@ -164,63 +183,14 @@ class Person
         return $this->needsLogin;
     }
 
-    public function setNeedsLogin(bool $needsLogin): self
+    public function setNeedsLogin(?bool $needsLogin): self
     {
         $this->needsLogin = $needsLogin;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Person[]
-     */
-    public function getParents(): Collection
-    {
-        return $this->parents;
-    }
 
-    public function addParent(Person $parent): self
-    {
-        if (!$this->parents->contains($parent)) {
-            $this->parents[] = $parent;
-            $parent->addChild($this);
-        }
-
-        return $this;
-    }
-
-    public function removeParent(Person $parent): self
-    {
-        if ($this->parents->removeElement($parent)) {
-            $parent->removeChild($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Person[]
-     */
-    public function getChildren(): Collection
-    {
-        return $this->children;
-    }
-
-    public function addChild(Person $child): self
-    {
-        if (!$this->children->contains($child)) {
-            $this->children[] = $child;
-        }
-
-        return $this;
-    }
-
-    public function removeChild(Person $child): self
-    {
-        $this->children->removeElement($child);
-
-        return $this;
-    }
 
     public function getPartner(): ?self
     {
@@ -335,4 +305,135 @@ class Person
 
         return $this;
     }
+
+    public function getNicknames(): ?array
+    {
+        return $this->nicknames;
+    }
+
+    public function setNicknames(array $nicknames): self
+    {
+        $this->nicknames = $nicknames;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favorite[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorite $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setPerson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorite $favorite): self
+    {
+        if ($this->favorites->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getPerson() === $this) {
+                $favorite->setPerson(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMainPicture(): ?string
+    {
+        return $this->mainPicture;
+    }
+
+    public function setMainPicture(?string $mainPicture): self
+    {
+        $this->mainPicture = $mainPicture;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getOwner(){
+        return $this->user;
+    }
+
+    public function getMainPerson(): ?bool
+    {
+        return $this->mainPerson;
+    }
+
+    public function setMainPerson(bool $mainPerson): self
+    {
+        $this->mainPerson = $mainPerson;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Familiar[]
+     */
+    public function getParents(): Collection
+    {
+        return $this->parents;
+    }
+
+    public function addParent(Familiar $parent): self
+    {
+        if (!$this->parents->contains($parent)) {
+            $this->parents[] = $parent;
+        }
+
+        return $this;
+    }
+
+    public function removeParent(Familiar $parent): self
+    {
+        $this->parents->removeElement($parent);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Familiar[]
+     */
+    public function getChildren(): Collection
+    {
+        return $this->children;
+    }
+
+    public function addChild(Familiar $child): self
+    {
+        if (!$this->children->contains($child)) {
+            $this->children[] = $child;
+        }
+
+        return $this;
+    }
+
+    public function removeChild(Familiar $child): self
+    {
+        $this->children->removeElement($child);
+
+        return $this;
+    }
+
 }
