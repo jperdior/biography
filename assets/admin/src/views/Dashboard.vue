@@ -78,15 +78,16 @@ export default {
     },
     subscriptionExpirationDate() {
       if (this.subscription) {
-        return moment(this.subscription.current_period_end).format(
-          "DD/MM/YYYY"
-        );
+        return moment
+          .unix(this.subscription.current_period_end)
+          .format("DD/MM/YYYY");
       }
       return false;
     },
     personDeletionDate() {
       if (this.subscription) {
-        return moment(this.subscription.current_period_end)
+        return moment
+          .unix(this.subscription.current_period_end)
           .add(1, "M")
           .format("DD/MM/YYYY");
       }
