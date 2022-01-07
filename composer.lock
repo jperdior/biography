@@ -2376,6 +2376,8 @@
             "time": "2021-07-14T16:41:46+00:00"
         },
         {
+<<<<<<< HEAD
+=======
             "name": "stof/doctrine-extensions-bundle",
             "version": "v1.7.0",
             "source": {
@@ -2510,6 +2512,7 @@
             "time": "2021-12-22T16:40:02+00:00"
         },
         {
+>>>>>>> 7a5d0f7ac1f4131d05b6fa127193a97bdf3d0111
             "name": "symfony/apache-pack",
             "version": "v1.0.1",
             "source": {
