@@ -33,13 +33,27 @@ class LabelService{
         return $labels;
     }
 
+    public function getEcommerceLabels(): array{
+        $labels = [
+            'quantity' => $this->translator->trans('Quantity'),
+            'checkout' => $this->translator->trans('Checkout'),
+            'maintenance_explanation' => $this->translator->trans('For maintenance purposes we do need a symbolic fee subscription.'),
+            'extra_products_explanation' => $this->translator->trans('You can also order a memorial plate here.'),
+        ];
+        return $labels;
+    }
+
     public function getPersonLabels() :array{
         $labels = [
+            'subscription_active_until' => $this->translator->trans('Subscription active until'),
+            'subscription_inactive' => $this->translator->trans("There's no active subscription"),
+            'data_will_be_deleted' => $this->translator->trans("Data will be deleted on "),
             'upload_picture' => $this->translator->trans('Upload picture'),
             'parents' => $this->translator->trans('Parents'),
             'no_persons' => $this->translator->trans('You haven\'t created any persons yet.'),
             'create_person' => $this->translator->trans('Create person'),
             'edit_person' => $this->translator->trans('Edit person'),
+            'view_person' => $this->translator->trans('View person'),
             'son_of' => $this->translator->trans('Son of'),
             'and_of' => $this->translator->trans('and of'),
             'treatment' => $this->translator->trans('Treatment'),

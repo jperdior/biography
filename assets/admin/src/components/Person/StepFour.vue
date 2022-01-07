@@ -5,6 +5,14 @@
         <galleries :person="person"></galleries>
       </b-col>
     </b-row>
+    <hr />
+    <b-row>
+      <b-col>
+        <b-button v-if="person" @click="submitPerson()">
+          {{ labels.save_and_continue }}
+        </b-button>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 <script>
@@ -19,6 +27,16 @@ export default {
       type: Object,
       required: false,
       default: null,
+    },
+  },
+  computed: {
+    labels() {
+      return this.$store.getters["person/personLabels"];
+    },
+  },
+  methods: {
+    submitPerson() {
+      this.$emit("next");
     },
   },
 };

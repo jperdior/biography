@@ -43,17 +43,22 @@
         </b-card>
       </b-col>
     </b-row>
+    <b-row>
+      <products></products>
+    </b-row>
   </b-container>
 </template>
 <script>
 import moment from "moment";
 import VueQr from "vue-qr";
 import FamilyTree from "./Family/FamilyTree.vue";
+import Products from "../Product/Products.vue";
 export default {
   name: "PersonViewer",
   components: {
     VueQr,
     FamilyTree,
+    Products,
   },
   props: {
     person: {

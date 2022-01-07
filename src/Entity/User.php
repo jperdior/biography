@@ -49,10 +49,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $persons;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Purchase", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $purchases;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $activeSubscription = false;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $subscription;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $subscriptionExpiration;
+
     public function __construct()
     {
         $this->id = Uuid::v4();
         $this->persons = new ArrayCollection();
+        $this->purchases = new ArrayCollection();
     }
 
 
@@ -189,6 +210,72 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $person->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getActiveSubscription(): ?bool
+    {
+        return $this->activeSubscription;
+    }
+
+    public function setActiveSubscription(bool $activeSubscription): self
+    {
+        $this->activeSubscription = $activeSubscription;
+
+        return $this;
+    }
+
+    public function getSubscriptionExpiration(): ?\DateTimeInterface
+    {
+        return $this->subscriptionExpiration;
+    }
+
+    public function setSubscriptionExpiration(?\DateTimeInterface $subscriptionExpiration): self
+    {
+        $this->subscriptionExpiration = $subscriptionExpiration;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Purchase[]
+     */
+    public function getPurchases(): Collection
+    {
+        return $this->purchases;
+    }
+
+    public function addPurchase(Purchase $purchase): self
+    {
+        if (!$this->purchases->contains($purchase)) {
+            $this->purchases[] = $purchase;
+            $purchase->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePurchase(Purchase $purchase): self
+    {
+        if ($this->purchases->removeElement($purchase)) {
+            // set the owning side to null (unless already changed)
+            if ($purchase->getUser() === $this) {
+                $purchase->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSubscription(): ?string
+    {
+        return $this->subscription;
+    }
+
+    public function setSubscription(?string $subscription): self
+    {
+        $this->subscription = $subscription;
 
         return $this;
     }

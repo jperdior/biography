@@ -1,0 +1,68 @@
+<template>
+  <b-container>
+    <b-row v-if="labels">
+      <b-col>
+        <maintenance-product
+          v-if="maintenanceProduct"
+          :product="maintenanceProduct"
+        ></maintenance-product>
+        <b-row>
+          <b-col>
+            <p>
+              {{ labels.extra_products_explanation }}
+            </p>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <products @productsUpdated="productsUpdatedEvent"> </products>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-button @click="checkout">{{ labels.checkout }}</b-button>
+          </b-col>
+        </b-row>
+      </b-col>
+    </b-row>
+  </b-container>
+</template>
+<script>
+import Products from "../Product/Products.vue";
+import ProductMiniature from "../Product/ProductMiniature.vue";
+import MaintenanceProduct from "../Product/MaintenanceProduct.vue";
+import ProductApi from "../../api/product.js";
+export default {
+  name: "StepFive",
+  components: {
+    Products,
+    ProductMiniature,
+    MaintenanceProduct,
+  },
+  async mounted() {
+    await this.$store.dispatch("product/getMaintenanceProduct");
+  },
+  computed: {
+    maintenanceProduct() {
+      return this.$store.getters["product/maintenanceProduct"];
+    },
+    labels() {
+      return this.$store.getters["product/productLabels"];
+    },
+  },
+  data: function () {
+    return {
+      products: [],
+    };
+  },
+  methods: {
+    async checkout() {
+      const response = await ProductApi.checkout(this.$data.products);
+      window.location.href = response.data;
+    },
+    productsUpdatedEvent(products) {
+      this.$data.products = products;
+    },
+  },
+};
+</script>

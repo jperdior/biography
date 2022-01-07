@@ -10,7 +10,7 @@
         ></vue-step>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row v-if="labels">
       <b-col>
         <!-- Step 1 -->
         <b-row v-if="currentStep == 1">
@@ -33,6 +33,11 @@
           <step-four @next="nextStep" :person="person"></step-four>
         </b-row>
 
+        <!-- Step 5 -->
+        <b-row v-if="currentStep == 5">
+          <step-five @next="nextStep" :person="person"></step-five>
+        </b-row>
+
         <!-- Controls -->
         <b-button
           variant="primary"
@@ -50,6 +55,7 @@ import StepOne from "./StepOne.vue";
 import StepTwo from "./StepTwo.vue";
 import StepThree from "./StepThree.vue";
 import StepFour from "./StepFour.vue";
+import StepFive from "./StepFive.vue";
 import vueStep from "vue-step";
 export default {
   name: "PersonForm",
@@ -59,6 +65,7 @@ export default {
     StepTwo,
     StepThree,
     StepFour,
+    StepFive,
   },
   mounted: function () {
     if (this.$route.params.step) {

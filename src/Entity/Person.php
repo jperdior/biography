@@ -8,12 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * @ORM\Entity(repositoryClass=PersonRepository::class)
  */
-
 class Person
 {
 
@@ -129,7 +129,7 @@ class Person
     private $favorites;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="person")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="persons")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     public $user;
@@ -139,6 +139,33 @@ class Person
      */
     #[Groups("person:read")]
     public $mainPerson = false;
+
+    /**
+     * @var \DateTime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    #[Groups("person:read")]
+    private $created;
+
+    /**
+     * @var \DateTime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    #[Groups("person:read")]
+    private $updated;
+
+    /**
+     * @var \DateTime $contentChanged
+     *
+     * @ORM\Column(name="content_changed", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="change", field={"description"})
+     */
+    #[Groups("person:read")]
+    private $contentChanged;
 
     public function __construct()
     {
@@ -432,6 +459,42 @@ class Person
     public function removeChild(Familiar $child): self
     {
         $this->children->removeElement($child);
+
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function getUpdated(): ?\DateTimeInterface
+    {
+        return $this->updated;
+    }
+
+    public function setUpdated(\DateTimeInterface $updated): self
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    public function getContentChanged(): ?\DateTimeInterface
+    {
+        return $this->contentChanged;
+    }
+
+    public function setContentChanged(?\DateTimeInterface $contentChanged): self
+    {
+        $this->contentChanged = $contentChanged;
 
         return $this;
     }

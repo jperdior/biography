@@ -3,7 +3,10 @@ import SecurityAPI from "../api/security";
 const AUTHENTICATING = "AUTHENTICATING",
   AUTHENTICATING_SUCCESS = "AUTHENTICATING_SUCCESS",
   AUTHENTICATING_ERROR = "AUTHENTICATING_ERROR",
-  PROVIDING_DATA_ON_REFRESH_SUCCESS = "PROVIDING_DATA_ON_REFRESH_SUCCESS";
+  PROVIDING_DATA_ON_REFRESH_SUCCESS = "PROVIDING_DATA_ON_REFRESH_SUCCESS",
+  REGISTERING = "REGISTERING",
+  REGISTERING_SUCCESS = "REGISTERING_SUCCESS",
+  REGISTERING_ERROR = "REGISTERING_ERROR";
 
 export default {
   namespaced: true,
@@ -56,10 +59,27 @@ export default {
       state.error = null;
       state.isAuthenticated = payload.isAuthenticated;
       state.user = payload.user;
+    },
+    [REGISTERING](state) {
+      state.isLoading = true;
+      state.error = null;
+      state.isAuthenticated = false;
+      state.user = null;
+    },
+    [REGISTERING_SUCCESS](state) {
+      state.isLoading = false;
+      state.error = null;
+      state.isAuthenticated = false;
+    },
+    [REGISTERING_ERROR](state, error) {
+      state.isLoading = false;
+      state.error = error;
+      state.isAuthenticated = false;
+      state.user = null;
     }
   },
   actions: {
-    async login({commit}, payload) {
+    async login({ commit }, payload) {
       commit(AUTHENTICATING);
       try {
         let response = await SecurityAPI.login(payload.email, payload.password);
@@ -70,7 +90,18 @@ export default {
         return null;
       }
     },
-    onRefresh({commit}, payload) {
+    async register({ commit }, payload) {
+      commit(REGISTERING);
+      try {
+        let response = await SecurityAPI.register(payload.email, payload.password);
+        commit(REGISTERING_SUCCESS);
+        return response.data;
+      } catch (error) {
+        commit(REGISTERING_ERROR, error);
+        return null;
+      }
+    },
+    onRefresh({ commit }, payload) {
       commit(PROVIDING_DATA_ON_REFRESH_SUCCESS, payload);
     }
   }
