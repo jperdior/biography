@@ -25,7 +25,7 @@ export default {
         persons: [],
         person: {},
         mainPerson: {},
-        personLabels: null,
+        personLabels: {},
         loading: false,
         error: null
     },

@@ -10,7 +10,12 @@
         <ul class="navbar-nav">
           <li v-if="!isAuthenticated" class="nav-item">
             <b-button variant="outline-success" class="nav-link" to="/login">
-              Login
+              {{ labels.login }}
+            </b-button>
+          </li>
+          <li v-if="!isAuthenticated" class="nav-item">
+            <b-button variant="outline-success" class="nav-link" to="/register">
+              {{ labels.register }}
             </b-button>
           </li>
           <li v-if="isAuthenticated" class="nav-item">
@@ -18,7 +23,7 @@
               variant="outline-danger"
               class="nav-link"
               href="/api/security/logout"
-              >Logout</b-button
+              >{{ labels.logout }}</b-button
             >
           </li>
         </ul>
@@ -30,7 +35,9 @@
       :no-close-on-esc="true"
       :hide-footer="true"
       :hide-header="true"
-      v-show="isLoading"
+      v-if="isLoading"
+      :visible="isLoading"
+      centered
     >
       <b-spinner class="mx-2"></b-spinner>
       Cargando información...
@@ -58,28 +65,29 @@ export default {
         if (err.response.status === 401) {
           this.$router.push({ path: "/login" });
         } else if (err.response.status === 500) {
-          document.open();
-          console.log(err.response.data);
-          document.write(err.response.data);
-          document.close();
+          // document.open();
+          // console.log(err.response.data);
+          // document.write(err.response.data);
+          // document.close();
         }
         throw err;
       });
     });
   },
   computed: {
-    isLoading: {
-      get: function () {
-        return (
-          this.$store.getters["person/loading"] ||
-          this.$store.getters["product/loading"] ||
-          this.$store.getters["security/loading"]
-        );
-      },
-      set: function () {},
+    isLoading() {
+      return (
+        this.$store.getters["person/loading"] ||
+        this.$store.getters["product/loading"] ||
+        this.$store.getters["subscription/loading"] ||
+        this.$store.getters["security/isLoading"]
+      );
     },
     isAuthenticated() {
       return this.$store.getters["security/isAuthenticated"];
+    },
+    labels() {
+      return this.$store.getters["person/personLabels"];
     },
   },
   watch: {

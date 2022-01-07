@@ -28,6 +28,10 @@ class LabelService{
             'and' => $this->translator->trans('and'),
             'welcome' => $this->translator->trans('Welcome to Recordari'),
             'upload_image' => $this->translator->trans('Upload image'),
+            'login' => $this->translator->trans('Login'),
+            'logout' => $this->translator->trans('Logout'),
+            'register' => $this->translator->trans('Register'),
+            'no_account' => $this->translator->trans('No account? Click here to register')
         ];
 
         return $labels;

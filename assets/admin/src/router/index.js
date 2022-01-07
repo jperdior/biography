@@ -53,8 +53,8 @@ const routes = [
         meta: { requiresAuth: true },
         component: () => import('../views/Checkout/Checkout.vue')
     },
-    { path: "/login", component: Login },
-    { path: "/register", component: Register }
+    { path: "/login", name: 'Login', component: Login },
+    { path: "/register", name: 'Register', component: Register }
 ];
 
 const router = new VueRouter({

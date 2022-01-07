@@ -24,11 +24,16 @@
                 class="btn btn-primary"
                 @click="performLogin()"
               >
-                Login
+                {{ labels.login }}
               </button>
             </div>
           </div>
         </form>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col md="4" offset-md="4">
+        <b-link to="/register">{{ labels.no_account }}</b-link>
       </b-col>
     </b-row>
     <b-row>
@@ -65,6 +70,9 @@ export default {
     },
     error() {
       return this.$store.getters["security/error"];
+    },
+    labels() {
+      return this.$store.getters["person/personLabels"];
     },
   },
   created() {
