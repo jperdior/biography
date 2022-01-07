@@ -94,7 +94,8 @@ class LabelService{
                 $this->translator->trans('Basic information'),
                 $this->translator->trans('Family'),
                 $this->translator->trans('Extra information'),
-                $this->translator->trans('Galleries')
+                $this->translator->trans('Galleries'),
+                $this->translator->trans('Finish')
             ],
             'treatments' => [
                 [

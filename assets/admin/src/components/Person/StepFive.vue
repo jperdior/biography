@@ -6,23 +6,6 @@
           v-if="maintenanceProduct"
           :product="maintenanceProduct"
         ></maintenance-product>
-        <b-row>
-          <b-col>
-            <p>
-              {{ labels.extra_products_explanation }}
-            </p>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <products @productsUpdated="productsUpdatedEvent"> </products>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <b-button @click="checkout">{{ labels.checkout }}</b-button>
-          </b-col>
-        </b-row>
       </b-col>
     </b-row>
   </b-container>

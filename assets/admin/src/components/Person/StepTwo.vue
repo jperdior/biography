@@ -108,7 +108,7 @@ export default {
       return this.$store.getters["person/personLabels"];
     },
   },
-  mounted() {
+  created() {
     if (this.person) {
       this.$data.formPerson = this.person;
       if (!this.$data.formPerson.parents.length) {
@@ -157,7 +157,7 @@ export default {
     },
     async addChild() {
       await this.$store.dispatch("familiar/createChild", this.$props.person.id);
-      this.$store.dispatch("person/getPerson", this.$props.person.id);
+      await this.$store.dispatch("person/getPerson", this.$props.person.id);
     },
     removeChild(index) {
       this.$data.formPerson.children.splice(index, 1);
