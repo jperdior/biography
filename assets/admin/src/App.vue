@@ -2,7 +2,7 @@
   <b-container fluid>
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand>
-        <router-link class="navbar-brand" to="/"> MEMORATE </router-link>
+        <router-link class="navbar-brand" to="/"> RECORDARI </router-link>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -39,42 +39,57 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "App",
-  mounted() {
+  created() {
     this.$store.dispatch("person/getPersonLabels");
+    this.$store.dispatch("product/getEcommerceLabels");
+    let isAuthenticated = JSON.parse(
+        this.$parent.$el.attributes["data-is-authenticated"].value
+      ),
+      user = JSON.parse(this.$parent.$el.attributes["data-user"].value);
+
+    let payload = { isAuthenticated: isAuthenticated, user: user };
+    this.$store.dispatch("security/onRefresh", payload);
+
+    axios.interceptors.response.use(undefined, (err) => {
+      return new Promise(() => {
+        if (err.response.status === 401) {
+          this.$router.push({ path: "/login" });
+        } else if (err.response.status === 500) {
+          document.open();
+          console.log(err.response.data);
+          document.write(err.response.data);
+          document.close();
+        }
+        throw err;
+      });
+    });
   },
   computed: {
     isLoading: {
       get: function () {
-        return this.$store.getters["person/loading"];
+        return (
+          this.$store.getters["person/loading"] ||
+          this.$store.getters["product/loading"] ||
+          this.$store.getters["security/loading"]
+        );
       },
       set: function () {},
     },
     isAuthenticated() {
       return this.$store.getters["security/isAuthenticated"];
     },
-    created() {
-      let isAuthenticated = JSON.parse(
-          this.$parent.$el.attributes["data-is-authenticated"].value
-        ),
-        user = JSON.parse(this.$parent.$el.attributes["data-user"].value);
-
-      let payload = { isAuthenticated: isAuthenticated, user: user };
-      this.$store.dispatch("security/onRefresh", payload);
-
-      axios.interceptors.response.use(undefined, (err) => {
-        return new Promise(() => {
-          if (err.response.status === 401) {
-            this.$router.push({ path: "/login" });
-          } else if (err.response.status === 500) {
-            document.open();
-            document.write(err.response.data);
-            document.close();
-          }
-          throw err;
-        });
-      });
+  },
+  watch: {
+    isAuthenticated: {
+      handler: function (newValue, oldValue) {
+        if (newValue) {
+          this.$store.dispatch("subscription/getSubscription");
+        }
+      },
+      deep: true,
     },
   },
 };

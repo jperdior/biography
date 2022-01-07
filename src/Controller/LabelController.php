@@ -18,9 +18,17 @@ class LabelController extends AbstractController
     }
 
     #[Route('/api/people/labels', name: 'people_labels')]
-    public function index(): JsonResponse
+    public function getPersonLabelsAction(): JsonResponse
     {
         $labels = $this->labelService->getPersonLabels();
+        return new JsonResponse($labels);
+
+    }
+
+    #[Route('/api/ecommerce/labels', name: 'ecommerce_labels')]
+    public function getEcommerceLabelsAction(): JsonResponse
+    {
+        $labels = $this->labelService->getEcommerceLabels();
         return new JsonResponse($labels);
 
     }

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from "../store";
 import Login from "../views/Login";
+import Register from "../views/Register";
 
 Vue.use(VueRouter);
 let currentURL = (window.location.pathname !== '/' ? window.location.pathname : '');
@@ -46,7 +47,14 @@ const routes = [
         meta: { requiresAuth: true },
         component: () => import('../views/Person/EditPerson.vue')
     },
-    { path: "/login", component: Login }
+    {
+        path: '/checkout',
+        name: 'Checkout',
+        meta: { requiresAuth: true },
+        component: () => import('../views/Checkout/Checkout.vue')
+    },
+    { path: "/login", component: Login },
+    { path: "/register", component: Register }
 ];
 
 const router = new VueRouter({
