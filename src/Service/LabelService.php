@@ -26,7 +26,7 @@ class LabelService{
             'remove' => $this->translator->trans('Remove'),
             'saved_successfully' => $this->translator->trans('Saved successfully'),
             'and' => $this->translator->trans('and'),
-            'welcome' => $this->translator->trans('Welcome to Memora Plate'),
+            'welcome' => $this->translator->trans('Welcome to Recordari'),
             'upload_image' => $this->translator->trans('Upload image'),
         ];
 
