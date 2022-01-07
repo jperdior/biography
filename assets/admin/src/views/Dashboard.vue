@@ -2,7 +2,6 @@
   <b-container>
     <b-row>
       <b-col>
-        <b-img fluid src="/img/logo.png"></b-img>
         <h1>{{ labels.welcome }}</h1>
       </b-col>
     </b-row>
@@ -33,28 +32,33 @@
     </b-row>
     <b-row v-if="subscription">
       <b-col>
-        <p>
-          {{ labels.subscription_active_until }}
-          {{ subscriptionExpirationDate }}
-        </p>
+        <b-row>
+          <b-col>
+            <p>
+              {{ labels.subscription_active_until }}
+              {{ subscriptionExpirationDate }}
+            </p>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <p>
+              {{ labels.extra_products_explanation }}
+            </p>
+          </b-col>
+        </b-row>
+        <plate :person="mainPerson"></plate>
+        <b-row>
+          <b-col>
+            <products @productsUpdated="productsUpdatedEvent"> </products>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-button @click="checkout">{{ productLabels.checkout }}</b-button>
+          </b-col>
+        </b-row>
       </b-col>
-      <b-row>
-        <b-col>
-          <p>
-            {{ labels.extra_products_explanation }}
-          </p>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col>
-          <products @productsUpdated="productsUpdatedEvent"> </products>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col>
-          <b-button @click="checkout">{{ labels.checkout }}</b-button>
-        </b-col>
-      </b-row>
     </b-row>
     <b-row v-else>
       <b-col>
@@ -70,11 +74,15 @@
 </template>
 <script>
 import moment from "moment";
+import Plate from "../components/Person/Plate.vue";
 import MaintenanceProduct from "../components/Product/MaintenanceProduct.vue";
+import Products from "../components/Product/Products.vue";
 export default {
   name: "Dashboard",
   components: {
     MaintenanceProduct,
+    Products,
+    Plate,
   },
   created() {
     this.$store.dispatch("person/getMainPerson");
@@ -89,6 +97,9 @@ export default {
     },
     labels() {
       return this.$store.getters["person/personLabels"];
+    },
+    productLabels() {
+      return this.$store.getters["product/productLabels"];
     },
     subscription() {
       return this.$store.getters["subscription/subscription"];
@@ -109,6 +120,15 @@ export default {
           .format("DD/MM/YYYY");
       }
       return moment(this.mainPerson.created).add(1, "M").format("DD/MM/YYYY");
+    },
+  },
+  methods: {
+    productsUpdatedEvent(products) {
+      this.$data.products = products;
+    },
+    async checkout() {
+      const response = await ProductApi.checkout(this.$data.products);
+      window.location.href = response.data;
     },
   },
 };

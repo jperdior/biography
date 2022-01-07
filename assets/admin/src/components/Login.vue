@@ -32,7 +32,7 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col md="4" offset-md="4">
+      <b-col md="4" offset-md="4" class="text-center">
         <b-link to="/register">{{ labels.no_account }}</b-link>
       </b-col>
     </b-row>

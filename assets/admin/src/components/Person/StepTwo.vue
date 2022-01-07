@@ -156,6 +156,7 @@ export default {
       return this.labels.and_of;
     },
     async addChild() {
+      await this.submitPerson();
       await this.$store.dispatch("familiar/createChild", this.$props.person.id);
       await this.$store.dispatch("person/getPerson", this.$props.person.id);
     },

@@ -1,23 +1,12 @@
 <template>
   <b-container fluid>
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand>
+      <b-navbar-brand class="ml-auto">
         <router-link class="navbar-brand" to="/"> RECORDARI </router-link>
       </b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-navbar-nav class="ml-auto">
         <ul class="navbar-nav">
-          <li v-if="!isAuthenticated" class="nav-item">
-            <b-button variant="outline-success" class="nav-link" to="/login">
-              {{ labels.login }}
-            </b-button>
-          </li>
-          <li v-if="!isAuthenticated" class="nav-item">
-            <b-button variant="outline-success" class="nav-link" to="/register">
-              {{ labels.register }}
-            </b-button>
-          </li>
           <li v-if="isAuthenticated" class="nav-item">
             <b-button
               variant="outline-danger"

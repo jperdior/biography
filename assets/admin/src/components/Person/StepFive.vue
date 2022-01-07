@@ -43,9 +43,6 @@ export default {
       const response = await ProductApi.checkout(this.$data.products);
       window.location.href = response.data;
     },
-    productsUpdatedEvent(products) {
-      this.$data.products = products;
-    },
   },
 };
 </script>
