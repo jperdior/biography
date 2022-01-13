@@ -36,7 +36,7 @@ export default {
       return this.$store.getters["product/maintenanceProduct"];
     },
     labels() {
-      return this.$store.getters["product/productLabels"];
+      return this.$store.getters["label/productLabels"];
     },
   },
   methods: {

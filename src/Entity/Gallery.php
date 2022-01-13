@@ -41,6 +41,16 @@ class Gallery
     #[Groups("person:read")]
     private $images;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $verified = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $approved = false;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -101,6 +111,30 @@ class Gallery
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getVerified(): ?bool
+    {
+        return $this->verified;
+    }
+
+    public function setVerified(bool $verified): self
+    {
+        $this->verified = $verified;
+
+        return $this;
+    }
+
+    public function getApproved(): ?bool
+    {
+        return $this->approved;
+    }
+
+    public function setApproved(bool $approved): self
+    {
+        $this->approved = $approved;
 
         return $this;
     }

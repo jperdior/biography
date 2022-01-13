@@ -118,14 +118,36 @@
         </b-row>
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        <h3>{{ labels.privacy_configuration }}</h3>
+        <b-row>
+          <b-col>
+            <b-form-group :label="labels.private_memorial">
+              <b-form-checkbox
+                v-model="formPerson.needsLogin"
+              ></b-form-checkbox>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-form-group :label="labels.allow_notes_or_galleries">
+              <b-form-checkbox
+                v-model="formPerson.allowNotesOrGalleries"
+              ></b-form-checkbox>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </b-col>
+    </b-row>
+
     <hr />
     <b-row>
       <b-col>
         <b-button @click="submitPerson()">
-          {{ labels.save }}
+          {{ defaultLabels.save }}
         </b-button>
         <b-button v-if="person" @click="submitPerson(true)">
-          {{ labels.save_and_continue }}
+          {{ defaultLabels.save_and_continue }}
         </b-button>
       </b-col>
     </b-row>
@@ -156,6 +178,8 @@ export default {
         "birthplace",
         "deathdate",
         "deathplace",
+        "needsLogin",
+        "allowNotesOrGalleries",
       ],
       formDirty: false,
       birthdateString: null,
@@ -172,6 +196,8 @@ export default {
         birthplace: "",
         deathdate: "",
         deathplace: "",
+        needsLogin: null,
+        allowNotesOrGalleries: null,
       },
     };
   },
@@ -206,7 +232,10 @@ export default {
   },
   computed: {
     labels() {
-      return this.$store.getters["person/personLabels"];
+      return this.$store.getters["label/personLabels"];
+    },
+    defaultLabels() {
+      return this.$store.getters["label/defaultLabels"];
     },
   },
   watch: {

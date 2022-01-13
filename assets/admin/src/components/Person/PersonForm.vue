@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-    <b-row>
+    <b-row class="mt-5">
       <b-col>
         <vue-step
           v-if="labels"
@@ -10,7 +10,7 @@
         ></vue-step>
       </b-col>
     </b-row>
-    <b-row v-if="labels">
+    <b-row v-if="labels" class="mt-5">
       <b-col>
         <!-- Step 1 -->
         <b-row v-if="currentStep == 1">
@@ -81,7 +81,7 @@ export default {
   },
   computed: {
     labels() {
-      return this.$store.getters["person/personLabels"];
+      return this.$store.getters["label/personLabels"];
     },
     isLoading() {
       return this.$store.getters["person/loading"];

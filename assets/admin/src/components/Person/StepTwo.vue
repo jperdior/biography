@@ -36,7 +36,7 @@
           </b-col>
           <b-col>
             <b-button variant="success" @click="addChild()">
-              {{ labels.add }}
+              {{ defaultLabels.add }}
             </b-button>
           </b-col>
         </b-row>
@@ -61,10 +61,10 @@
     <b-row>
       <b-col>
         <b-button @click="submitPerson()">
-          {{ labels.save }}
+          {{ defaultLabels.save }}
         </b-button>
         <b-button v-if="person" @click="submitPerson(true)">
-          {{ labels.save_and_continue }}
+          {{ defaultLabels.save_and_continue }}
         </b-button>
       </b-col>
     </b-row>
@@ -105,7 +105,10 @@ export default {
   },
   computed: {
     labels() {
-      return this.$store.getters["person/personLabels"];
+      return this.$store.getters["label/personLabels"];
+    },
+    defaultLabels() {
+      return this.$store.getters["label/defaultLabels"];
     },
   },
   created() {
@@ -156,7 +159,7 @@ export default {
       return this.labels.and_of;
     },
     async addChild() {
-      await this.submitPerson();
+      await this.$store.dispatch("person/updatePerson", this.$data.formPerson);
       await this.$store.dispatch("familiar/createChild", this.$props.person.id);
       await this.$store.dispatch("person/getPerson", this.$props.person.id);
     },

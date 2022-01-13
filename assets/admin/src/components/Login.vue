@@ -1,55 +1,64 @@
 <template>
-  <b-container>
-    <b-row>
-      <b-col md="4" offset-md="4" class="text-center">
-        <h1>Login</h1>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col md="4" offset-md="4" class="text-center">
-        <form>
-          <div class="form-row">
-            <div class="col-12">
-              <input v-model="email" type="text" class="form-control" />
-            </div>
-            <div class="col-12">
-              <input v-model="password" type="password" class="form-control" />
-            </div>
-            <div class="col-12">
-              <button
-                :disabled="
-                  email.length === 0 || password.length === 0 || isLoading
-                "
-                type="button"
-                class="btn btn-primary"
-                @click="performLogin()"
-              >
-                {{ labels.login }}
-              </button>
-            </div>
+  <b-row no-gutters>
+    <b-col>
+      <!-- <b-card style="background-color: rgba(238, 238, 238, 0.7)"> -->
+      <b-row>
+        <b-col class="text-center">
+          <form>
+            <b-row>
+              <b-col>
+                <b-form-group :label="labels.email">
+                  <b-input
+                    v-model="email"
+                    :placeholder="labels.email"
+                  ></b-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <b-form-group :label="labels.password">
+                  <b-input v-model="password" type="password"></b-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <b-button
+                  :disabled="
+                    email.length === 0 || password.length === 0 || isLoading
+                  "
+                  variant="primary"
+                  @click="performLogin()"
+                >
+                  {{ labels.login }}
+                </b-button>
+              </b-col>
+            </b-row>
+          </form>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col class="text-center">
+          <b-link to="/register">{{ labels.no_account }}</b-link>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <div v-if="isLoading" class="row col">
+            <p>Loading...</p>
           </div>
-        </form>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col md="4" offset-md="4" class="text-center">
-        <b-link to="/register">{{ labels.no_account }}</b-link>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <div v-if="isLoading" class="row col">
-          <p>Loading...</p>
-        </div>
 
-        <div v-else-if="hasError" class="row col">
-          <div class="alert alert-danger" role="alert">
-            {{ error }}
+          <div v-else-if="hasError" class="row col">
+            <div class="alert alert-danger" role="alert">
+              {{ error }}
+            </div>
           </div>
-        </div>
-      </b-col>
-    </b-row>
-  </b-container>
+        </b-col>
+      </b-row>
+      <!-- </b-card> -->
+    </b-col>
+  </b-row>
 </template>
 
 <script>
@@ -72,7 +81,7 @@ export default {
       return this.$store.getters["security/error"];
     },
     labels() {
-      return this.$store.getters["person/personLabels"];
+      return this.$store.getters["label/defaultLabels"];
     },
   },
   created() {
@@ -95,8 +104,6 @@ export default {
       if (!this.$store.getters["security/hasError"]) {
         if (typeof redirect !== "undefined") {
           this.$router.push({ path: redirect });
-        } else {
-          this.$router.push({ path: "/" });
         }
       }
     },

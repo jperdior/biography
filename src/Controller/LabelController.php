@@ -28,7 +28,7 @@ class LabelController extends AbstractController
     #[Route('/api/ecommerce/labels', name: 'ecommerce_labels')]
     public function getEcommerceLabelsAction(): JsonResponse
     {
-        $labels = $this->labelService->getEcommerceLabels();
+        $labels = $this->labelService->getProductLabels();
         return new JsonResponse($labels);
 
     }

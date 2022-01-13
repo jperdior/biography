@@ -20,7 +20,10 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/{vueRouting}", name="index",requirements={"vueRouting"="^(?!api|_(profiler|wdt)).*"})
+     * @Route("/{_locale}/{vueRouting}",
+     *  name="index",
+     *  defaults={"_locale": "es", "vueRouting": null},
+     * requirements={"_locale": "|es|en","vueRouting"="^(?!api|_(profiler|wdt)).*"})
      * @return Response
      */
     public function indexAction(): Response

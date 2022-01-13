@@ -95,7 +95,14 @@ class Person
     /**
      * @ORM\Column(type="boolean")
      */
+    #[Groups(["person:read","person:write"])]
     private $needsLogin = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    #[Groups(["person:read","person:write"])]
+    private $allowNotesOrGalleries = true;
 
     /**
      * @ORM\OneToMany(targetEntity="Familiar", mappedBy="child", cascade={"persist","remove"})
@@ -167,6 +174,12 @@ class Person
     #[Groups("person:read")]
     private $contentChanged;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="person", cascade={"persist","remove"})
+     */
+    #[Groups(["person:read"])]
+    private $notes;
+
     public function __construct()
     {
         $this->id = Uuid::v4();
@@ -174,6 +187,7 @@ class Person
         $this->children = new ArrayCollection();
         $this->galleries = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -495,6 +509,48 @@ class Person
     public function setContentChanged(?\DateTimeInterface $contentChanged): self
     {
         $this->contentChanged = $contentChanged;
+
+        return $this;
+    }
+
+    public function getAllowNotesOrGalleries(): ?bool
+    {
+        return $this->allowNotesOrGalleries;
+    }
+
+    public function setAllowNotesOrGalleries(bool $allowNotesOrGalleries): self
+    {
+        $this->allowNotesOrGalleries = $allowNotesOrGalleries;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Note[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setPerson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->removeElement($note)) {
+            // set the owning side to null (unless already changed)
+            if ($note->getPerson() === $this) {
+                $note->setPerson(null);
+            }
+        }
 
         return $this;
     }

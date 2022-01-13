@@ -22,15 +22,15 @@ export default {
     ProductMiniature,
     MaintenanceProduct,
   },
-  async mounted() {
-    await this.$store.dispatch("product/getMaintenanceProduct");
+  created() {
+    this.$store.dispatch("product/getMaintenanceProduct");
   },
   computed: {
     maintenanceProduct() {
       return this.$store.getters["product/maintenanceProduct"];
     },
     labels() {
-      return this.$store.getters["product/productLabels"];
+      return this.$store.getters["label/productLabels"];
     },
   },
   data: function () {

@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     labels() {
-      return this.$store.getters["product/productLabels"];
+      return this.$store.getters["label/productLabels"];
     },
   },
   data() {

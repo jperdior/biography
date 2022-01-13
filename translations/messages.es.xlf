@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="es" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="H.V6Kdf" resname="Next">
+        <source>Next</source>
+        <target>Siguiente</target>
+      </trans-unit>
+      <trans-unit id="pXsIpIC" resname="Previous">
+        <source>Previous</source>
+        <target>Previo</target>
+      </trans-unit>
+      <trans-unit id="FQn1YfJ" resname="Save">
+        <source>Save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="aIDa8XK" resname="Save and continue">
+        <source>Save and continue</source>
+        <target>Guardar y continuar</target>
+      </trans-unit>
+      <trans-unit id="n9coxmy" resname="Add">
+        <source>Add</source>
+        <target>Añadir</target>
+      </trans-unit>
+      <trans-unit id="w4EvxKy" resname="Remove">
+        <source>Remove</source>
+        <target>Eliminar</target>
+      </trans-unit>
+      <trans-unit id="dd4122i" resname="Saved successfully">
+        <source>Saved successfully</source>
+        <target>Guardado con éxito</target>
+      </trans-unit>
+      <trans-unit id="YgERG4O" resname="and">
+        <source>and</source>
+        <target>y</target>
+      </trans-unit>
+      <trans-unit id="2pJyUWR" resname="Welcome to Recordari">
+        <source>Welcome to Recordari</source>
+        <target>Bienvenido a Recordari</target>
+      </trans-unit>
+      <trans-unit id="._TfbHy" resname="Upload image">
+        <source>Upload image</source>
+        <target>Subir imagen</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Acceder</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>Cerrar sesión</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ" resname="Register">
+        <source>Register</source>
+        <target>Registrarme</target>
+      </trans-unit>
+      <trans-unit id="CqxmYOJ" resname="No account? Click here to register">
+        <source>No account? Click here to register</source>
+        <target>Haz click aquí para crear una cuenta</target>
+      </trans-unit>
+      <trans-unit id="giurjUG" resname="Quantity">
+        <source>Quantity</source>
+        <target>Cantidad</target>
+      </trans-unit>
+      <trans-unit id="mecfSMS" resname="Checkout">
+        <source>Checkout</source>
+        <target>Finalizar compra</target>
+      </trans-unit>
+      <trans-unit id="8R1u3f5" resname="For maintenance purposes we do need a symbolic fee subscription.">
+        <source>For maintenance purposes we do need a symbolic fee subscription.</source>
+        <target>__For maintenance purposes we do need a symbolic fee subscription.</target>
+      </trans-unit>
+      <trans-unit id="3J6ggea" resname="You can also order a memorial plate here.">
+        <source>You can also order a memorial plate here.</source>
+        <target>__You can also order a memorial plate here.</target>
+      </trans-unit>
+      <trans-unit id="AtOqiJL" resname="Subscription active until">
+        <source>Subscription active until</source>
+        <target>Suscripción activa hasta </target>
+      </trans-unit>
+      <trans-unit id="aaSFe44" resname="There's no active subscription">
+        <source>There's no active subscription</source>
+        <target>No hay suscripción activa</target>
+      </trans-unit>
+      <trans-unit id="PfDf85C" resname="Data will be deleted on ">
+        <source>Data will be deleted on </source>
+        <target>los datos se eliminarán el </target>
+      </trans-unit>
+      <trans-unit id="CqYveJj" resname="Upload picture">
+        <source>Upload picture</source>
+        <target>Subir foto</target>
+      </trans-unit>
+      <trans-unit id="yLKZntQ" resname="Parents">
+        <source>Parents</source>
+        <target>Padres</target>
+      </trans-unit>
+      <trans-unit id="pprcbBj" resname="You haven't created any persons yet.">
+        <source>You haven't created any persons yet.</source>
+        <target>__You haven't created any persons yet.</target>
+      </trans-unit>
+      <trans-unit id="8A3eGOh" resname="Create person">
+        <source>Create person</source>
+        <target>Crear ficha</target>
+      </trans-unit>
+      <trans-unit id="GD1jSvk" resname="Edit person">
+        <source>Edit person</source>
+        <target>Editar perfil</target>
+      </trans-unit>
+      <trans-unit id=".3SWAFD" resname="View person">
+        <source>View person</source>
+        <target>Ver perfil</target>
+      </trans-unit>
+      <trans-unit id="_QFhl7q" resname="Son of">
+        <source>Son of</source>
+        <target>Descendiente de</target>
+      </trans-unit>
+      <trans-unit id="kXTqD.i" resname="and of">
+        <source>and of</source>
+        <target>y de</target>
+      </trans-unit>
+      <trans-unit id="DTMdhYd" resname="Treatment">
+        <source>Treatment</source>
+        <target>Tratamiento</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Nombre</target>
+      </trans-unit>
+      <trans-unit id="LFv1deS" resname="Lastnames">
+        <source>Lastnames</source>
+        <target>Apellidos</target>
+      </trans-unit>
+      <trans-unit id="WXzoaGl" resname="Birthdate">
+        <source>Birthdate</source>
+        <target>Fecha de nacimiento</target>
+      </trans-unit>
+      <trans-unit id="fa_5Ohq" resname="Birthplace">
+        <source>Birthplace</source>
+        <target>Lugar de nacimiento</target>
+      </trans-unit>
+      <trans-unit id="ShVu.lE" resname="Deceased date">
+        <source>Deceased date</source>
+        <target>Fecha de deceso</target>
+      </trans-unit>
+      <trans-unit id="kckZKsM" resname="Deseace place">
+        <source>Deseace place</source>
+        <target>Lugar de deceso</target>
+      </trans-unit>
+      <trans-unit id="NYOjWKW" resname="Children">
+        <source>Children</source>
+        <target>Descendientes</target>
+      </trans-unit>
+      <trans-unit id="gFMyEoH" resname="Child">
+        <source>Child</source>
+        <target>Descendiente</target>
+      </trans-unit>
+      <trans-unit id="y.oYnX9" resname="Save gallery">
+        <source>Save gallery</source>
+        <target>Guardar galería</target>
+      </trans-unit>
+      <trans-unit id="h3J5JKK" resname="Edit gallery">
+        <source>Edit gallery</source>
+        <target>Editar galería</target>
+      </trans-unit>
+      <trans-unit id="_Xa9VvD" resname="Create gallery">
+        <source>Create gallery</source>
+        <target>Crear galería</target>
+      </trans-unit>
+      <trans-unit id="tlvZ67B" resname="Delete gallery">
+        <source>Delete gallery</source>
+        <target>Eliminar galería</target>
+      </trans-unit>
+      <trans-unit id="I7ZypVq" resname="This action can't be undone. Are you sure you want to proceed?">
+        <source>This action can't be undone. Are you sure you want to proceed?</source>
+        <target>Esta acción es irreversible. ¿Está seguro que desea continuar?</target>
+      </trans-unit>
+      <trans-unit id="UaWt4Zt" resname="Removed successfully">
+        <source>Removed successfully</source>
+        <target>Eliminado con éxito</target>
+      </trans-unit>
+      <trans-unit id="Roenwbm" resname="Gallery title">
+        <source>Gallery title</source>
+        <target>Título de la galería</target>
+      </trans-unit>
+      <trans-unit id="NCisuaB" resname="Add pictures to gallery">
+        <source>Add pictures to gallery</source>
+        <target>Añadir imágenes a la galería</target>
+      </trans-unit>
+      <trans-unit id="lC2_2pF" resname="Biography">
+        <source>Biography</source>
+        <target>Biografía</target>
+      </trans-unit>
+      <trans-unit id="4r1tQGo" resname="Add favourite">
+        <source>Add favourite</source>
+        <target>Añadir favorito</target>
+      </trans-unit>
+      <trans-unit id="UAge8eS" resname="Favourite type">
+        <source>Favourite type</source>
+        <target>Tipo de favorito</target>
+      </trans-unit>
+      <trans-unit id="ipvoB0G" resname="actors, movies, books...">
+        <source>actors, movies, books...</source>
+        <target>actores, películas, libros ...</target>
+      </trans-unit>
+      <trans-unit id="2X1R03C" resname="Favourites">
+        <source>Favourites</source>
+        <target>Favoritos</target>
+      </trans-unit>
+      <trans-unit id="OltquJT" resname="Nicknames">
+        <source>Nicknames</source>
+        <target>Apodos</target>
+      </trans-unit>
+      <trans-unit id="unNayER" resname="Add nichnames separated by commas">
+        <source>Add nichnames separated by commas</source>
+        <target>Añadir apodos separados por comas</target>
+      </trans-unit>
+      <trans-unit id="lF1c7c0" resname="Father of">
+        <source>Father of</source>
+        <target>Padre de</target>
+      </trans-unit>
+      <trans-unit id="ejuyTnN" resname="Mother of">
+        <source>Mother of</source>
+        <target>Madre de</target>
+      </trans-unit>
+      <trans-unit id="DKsNmc2" resname="Parent to">
+        <source>Parent to</source>
+        <target>Ascendiente de</target>
+      </trans-unit>
+      <trans-unit id="pb5wMa4" resname="Show family tree">
+        <source>Show family tree</source>
+        <target>Mostrar árbol de familia</target>
+      </trans-unit>
+      <trans-unit id="7NBZewB" resname="&lt;strong&gt;NAME_PLACEHOLDER LASTNAME_PLACEHOLDER&lt;/strong&gt; (BIRTHDATE_PLACEHOLDER&#10;            in BIRTHPLACE_PLACEHOLDER - DEATHDATE_PLACEHOLDER in DEATHPLACE_PLACEHOLDER). PARENTS_PLACEHOLDER. CHILDREN_PLACEHOLDER">
+        <source>&lt;strong&gt;NAME_PLACEHOLDER LASTNAME_PLACEHOLDER&lt;/strong&gt; (BIRTHDATE_PLACEHOLDER
+            in BIRTHPLACE_PLACEHOLDER - DEATHDATE_PLACEHOLDER in DEATHPLACE_PLACEHOLDER). PARENTS_PLACEHOLDER. CHILDREN_PLACEHOLDER</source>
+        <target><![CDATA[__<strong>NAME_PLACEHOLDER LASTNAME_PLACEHOLDER</strong> (BIRTHDATE_PLACEHOLDER
+            en BIRTHPLACE_PLACEHOLDER - DEATHDATE_PLACEHOLDER en DEATHPLACE_PLACEHOLDER). PARENTS_PLACEHOLDER. CHILDREN_PLACEHOLDER]]></target>
+      </trans-unit>
+      <trans-unit id="bAksnKA" resname="Basic information">
+        <source>Basic information</source>
+        <target>Información básica</target>
+      </trans-unit>
+      <trans-unit id="vS1ney7" resname="Family">
+        <source>Family</source>
+        <target>Familia</target>
+      </trans-unit>
+      <trans-unit id="MUXZCZ2" resname="Extra information">
+        <source>Extra information</source>
+        <target>Información extra</target>
+      </trans-unit>
+      <trans-unit id="9uJH360" resname="Galleries">
+        <source>Galleries</source>
+        <target>Galerías</target>
+      </trans-unit>
+      <trans-unit id="pseoS6p" resname="Finish">
+        <source>Finish</source>
+        <target>Finalizar perfil</target>
+      </trans-unit>
+      <trans-unit id="uHrgX_w" resname="Masculine">
+        <source>Masculine</source>
+        <target>Masculino</target>
+      </trans-unit>
+      <trans-unit id="bo6oXP." resname="Femenine">
+        <source>Femenine</source>
+        <target>Femenino</target>
+      </trans-unit>
+      <trans-unit id="HGrGnx5" resname="Neutral">
+        <source>Neutral</source>
+        <target>Neutro</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

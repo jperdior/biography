@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     labels() {
-      return this.$store.getters["person/personLabels"];
+      return this.$store.getters["label/personLabels"];
     },
   },
   methods: {

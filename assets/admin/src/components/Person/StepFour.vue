@@ -9,7 +9,7 @@
     <b-row>
       <b-col>
         <b-button v-if="person" @click="submitPerson()">
-          {{ labels.save_and_continue }}
+          {{ defaultLabels.save_and_continue }}
         </b-button>
       </b-col>
     </b-row>
@@ -31,7 +31,10 @@ export default {
   },
   computed: {
     labels() {
-      return this.$store.getters["person/personLabels"];
+      return this.$store.getters["label/personLabels"];
+    },
+    defaultLabels() {
+      return this.$store.getters["label/defaultLabels"];
     },
   },
   methods: {

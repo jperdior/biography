@@ -23,7 +23,7 @@ export default {
     namespaced: true,
     state: {
         persons: [],
-        person: {},
+        person: null,
         mainPerson: {},
         personLabels: {},
         loading: false,
