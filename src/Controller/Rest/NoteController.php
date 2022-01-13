@@ -86,6 +86,7 @@ class NoteController extends AbstractFOSRestController{
          */
         $note = $serializer->deserialize($request->getContent(), Note::class, 'json',['groups'=>'note:write']);
         $note->setPerson($person);
+        $note->setVerified(true);
         $note->setVerificationToken(Uuid::v4());
         $managerRegistry->getManager()->persist($note);
         $managerRegistry->getManager()->flush();
