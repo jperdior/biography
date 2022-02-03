@@ -5,31 +5,7 @@
         <h1>{{ labels.welcome }}</h1>
       </b-col>
     </b-row>
-
-    <b-row v-if="!mainPerson">
-      <b-col>
-        <p>
-          {{ labels.no_persons }}
-        </p>
-        <b-button variant="primary" :to="{ name: 'CreatePerson' }">{{
-          labels.create_person
-        }}</b-button>
-      </b-col>
-    </b-row>
-
-    <b-row v-else>
-      <b-button
-        variant="success"
-        :to="{ name: 'EditPerson', params: { id: mainPerson.id } }"
-        >{{ labels.edit_person }}</b-button
-      >
-      <b-button
-        variant="info"
-        :to="{ name: 'Person', params: { id: mainPerson.id } }"
-      >
-        {{ labels.view_person }}
-      </b-button>
-    </b-row>
+    <dashboard-persons></dashboard-persons>
     <b-row v-if="subscription">
       <b-col>
         <b-row>
@@ -77,20 +53,22 @@ import moment from "moment";
 import Plate from "../components/Person/Plate.vue";
 import MaintenanceProduct from "../components/Product/MaintenanceProduct.vue";
 import Products from "../components/Product/Products.vue";
+import DashboardPersons from "../components/Dashboard/DashboardPersons.vue";
 export default {
   name: "Dashboard",
   components: {
     MaintenanceProduct,
     Products,
     Plate,
+    DashboardPersons
   },
   created() {
-    this.$store.dispatch("person/getMainPerson");
+    this.$store.dispatch("person/getPersons");
     this.$store.dispatch("product/getMaintenanceProduct");
   },
   computed: {
-    mainPerson() {
-      return this.$store.getters["person/mainPerson"];
+    persons(){
+      return this.$store.getters["person/persons"];
     },
     maintenanceProduct() {
       return this.$store.getters["product/maintenanceProduct"];
