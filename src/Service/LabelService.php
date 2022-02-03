@@ -31,18 +31,75 @@ class LabelService{
             'login' => $this->translator->trans('Login'),
             'logout' => $this->translator->trans('Logout'),
             'register' => $this->translator->trans('Register'),
-            'no_account' => $this->translator->trans('No account? Click here to register')
+            'no_account' => $this->translator->trans('No account? Click here to register'),
+            'email' => $this->translator->trans('Email'),
+            'password' => $this->translator->trans('Password'),
+            'fullname' => $this->translator->trans('Full name'),
+            'delete' => $this->translator->trans('Delete')
         ];
 
         return $labels;
     }
 
-    public function getEcommerceLabels(): array{
+    public function getProductLabels(): array{
         $labels = [
+            'choose_font' => $this->translator->trans('Choose typography'),
+            'choose_material' => $this->translator->trans('Choose material'),
+            'choose_size' => $this->translator->trans('Choose size'),
             'quantity' => $this->translator->trans('Quantity'),
             'checkout' => $this->translator->trans('Checkout'),
             'maintenance_explanation' => $this->translator->trans('For maintenance purposes we do need a symbolic fee subscription.'),
             'extra_products_explanation' => $this->translator->trans('You can also order a memorial plate here.'),
+            'customize_memorial_plate' => $this->translator->trans('Customize your commemorative plate here'),
+            'material_options' => [
+                [
+                    'value' => 'steel',
+                    'text' => $this->translator->trans('Steel'),
+                ],
+                [
+                    'value' => 'brass',
+                    'text' => $this->translator->trans('Brass'),
+                ],
+                [
+                    'value' => 'aluminum',
+                    'text' => $this->translator->trans('Aluminum'),
+                ],
+                [
+                    'value' => 'methacrylate',
+                    'text' => $this->translator->trans('Methacrylate'),
+                ],
+                [
+                    'value' => 'acrilic',
+                    'text' => $this->translator->trans('Acrilic'),
+                ],
+            ]
+        ];
+        return $labels;
+    }
+
+    public function getNoteLabels(): array{
+        $labels = [
+            'admin_table_fields' => [
+                [
+                    'key' => 'fullname',
+                    'label' => $this->translator->trans('Author')
+                ],
+                [
+                    'key' => 'body',
+                    'label' => $this->translator->trans('Message')
+                ],
+                [
+                    'key' => 'approved',
+                    'label' => $this->translator->trans('Approved')
+                ],
+                [
+                    'key' => 'actions',
+                    'label' => $this->translator->trans('Actions')
+                ],
+            ],
+            'approve' => $this->translator->trans('Approve'),
+            'disapprove' => $this->translator->trans('Disapprove'),
+            'delete_confirm' => $this->translator->trans('Are you sure you want to delete this note? This action can\'t be undone.')
         ];
         return $labels;
     }
@@ -55,9 +112,9 @@ class LabelService{
             'upload_picture' => $this->translator->trans('Upload picture'),
             'parents' => $this->translator->trans('Parents'),
             'no_persons' => $this->translator->trans('You haven\'t created any persons yet.'),
-            'create_person' => $this->translator->trans('Create person'),
-            'edit_person' => $this->translator->trans('Edit person'),
-            'view_person' => $this->translator->trans('View person'),
+            'create_memorial' => $this->translator->trans('Create memorial'),
+            'edit_memorial' => $this->translator->trans('Edit memorial'),
+            'view_memorial' => $this->translator->trans('View memorial'),
             'son_of' => $this->translator->trans('Son of'),
             'and_of' => $this->translator->trans('and of'),
             'treatment' => $this->translator->trans('Treatment'),
@@ -67,6 +124,9 @@ class LabelService{
             'birthplace' => $this->translator->trans('Birthplace'),
             'deathdate' => $this->translator->trans('Deceased date'),
             'deathplace' => $this->translator->trans('Deseace place'),
+            'privacy_configuration' => $this->translator->trans('Privacy configuration'),
+            'private_memorial' => $this->translator->trans('Private memorial'),
+            'allow_notes_or_galleries' => $this->translator->trans('Allow memorial visitors to post notes or galleries'),
             'children' => $this->translator->trans('Children'),
             'child' => $this->translator->trans('Child'),
             'save_gallery' => $this->translator->trans('Save gallery'),
@@ -110,9 +170,27 @@ class LabelService{
                     'value' => Person::NEUTRAL_TREATMENT,
                     'text' => $this->translator->trans('Neutral'),
                 ]
-            ]
+                ],
+            'eventTypes' => [
+                [
+                    'value' => 'birthdate',
+                    'text' => $this->translator->trans('Birthdate')
+                ],
+                [
+                    'value' => 'deathdate',
+                    'text' => $this->translator->trans('Decease date')
+                ]
+                ],
+                'google_calendar' => $this->translator->trans('Google calendar'),
+                'add_reminder' => $this->translator->trans('Add reminder'),
+                'reminder_type' => $this->translator->trans('Reminder type'),
+                'recordari_meaning' => $this->translator->trans('La palabra "<b>recordar</b>" viene del latín "<i>recordari</i>
+                  ", formado por <i>re</i> (de nuevo) y <i>cordis</i> (corazón).
+                  Recordar quiere decir mucho más que tener a alguien presente
+                  en la memoria. Significa "volver a pasar por el corazón".'),
+                  'know_more' => $this->translator->trans('Know more')
         ];
-        return array_merge($labels,$this->getDefaultLabels());
+        return $labels;
     }
 
 }

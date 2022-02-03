@@ -72,7 +72,7 @@ export default {
       return this.$store.getters["security/error"];
     },
     labels() {
-      return this.$store.getters["person/personLabels"];
+      return this.$store.getters["label/personLabels"];
     },
   },
   created() {

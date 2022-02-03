@@ -7,35 +7,35 @@
     <body>
       <trans-unit id="H.V6Kdf" resname="Next">
         <source>Next</source>
-        <target>__Next</target>
+        <target>Siguiente</target>
       </trans-unit>
       <trans-unit id="pXsIpIC" resname="Previous">
         <source>Previous</source>
-        <target>__Previous</target>
+        <target>Previo</target>
       </trans-unit>
       <trans-unit id="FQn1YfJ" resname="Save">
         <source>Save</source>
-        <target>__Save</target>
+        <target>Guardar</target>
       </trans-unit>
       <trans-unit id="aIDa8XK" resname="Save and continue">
         <source>Save and continue</source>
-        <target>__Save and continue</target>
+        <target>Guardar y continuar</target>
       </trans-unit>
       <trans-unit id="n9coxmy" resname="Add">
         <source>Add</source>
-        <target>__Add</target>
+        <target>Añadir</target>
       </trans-unit>
       <trans-unit id="w4EvxKy" resname="Remove">
         <source>Remove</source>
-        <target>__Remove</target>
+        <target>Eliminar</target>
       </trans-unit>
       <trans-unit id="dd4122i" resname="Saved successfully">
         <source>Saved successfully</source>
-        <target>__Saved successfully</target>
+        <target>Guardado con éxito</target>
       </trans-unit>
       <trans-unit id="YgERG4O" resname="and">
         <source>and</source>
-        <target>__and</target>
+        <target>y</target>
       </trans-unit>
       <trans-unit id="2pJyUWR" resname="Welcome to Recordari">
         <source>Welcome to Recordari</source>
@@ -43,31 +43,31 @@
       </trans-unit>
       <trans-unit id="._TfbHy" resname="Upload image">
         <source>Upload image</source>
-        <target>__Upload image</target>
+        <target>Subir imagen</target>
       </trans-unit>
       <trans-unit id="nWMiwfT" resname="Login">
         <source>Login</source>
-        <target>__Login</target>
+        <target>Acceder</target>
       </trans-unit>
       <trans-unit id="0FJ_Sz1" resname="Logout">
         <source>Logout</source>
-        <target>__Logout</target>
+        <target>Cerrar sesión</target>
       </trans-unit>
       <trans-unit id="u3I07BJ" resname="Register">
         <source>Register</source>
-        <target>__Register</target>
+        <target>Registrarme</target>
       </trans-unit>
       <trans-unit id="CqxmYOJ" resname="No account? Click here to register">
         <source>No account? Click here to register</source>
-        <target>__No account? Click here to register</target>
+        <target>Haz click aquí para crear una cuenta</target>
       </trans-unit>
       <trans-unit id="giurjUG" resname="Quantity">
         <source>Quantity</source>
-        <target>__Quantity</target>
+        <target>Cantidad</target>
       </trans-unit>
       <trans-unit id="mecfSMS" resname="Checkout">
         <source>Checkout</source>
-        <target>__Checkout</target>
+        <target>Finalizar compra</target>
       </trans-unit>
       <trans-unit id="8R1u3f5" resname="For maintenance purposes we do need a symbolic fee subscription.">
         <source>For maintenance purposes we do need a symbolic fee subscription.</source>
@@ -79,23 +79,23 @@
       </trans-unit>
       <trans-unit id="AtOqiJL" resname="Subscription active until">
         <source>Subscription active until</source>
-        <target>__Subscription active until</target>
+        <target>Suscripción activa hasta </target>
       </trans-unit>
       <trans-unit id="aaSFe44" resname="There's no active subscription">
         <source>There's no active subscription</source>
-        <target>__There's no active subscription</target>
+        <target>No hay suscripción activa</target>
       </trans-unit>
       <trans-unit id="PfDf85C" resname="Data will be deleted on ">
         <source>Data will be deleted on </source>
-        <target>__Data will be deleted on </target>
+        <target>los datos se eliminarán el </target>
       </trans-unit>
       <trans-unit id="CqYveJj" resname="Upload picture">
         <source>Upload picture</source>
-        <target>__Upload picture</target>
+        <target>Subir foto</target>
       </trans-unit>
       <trans-unit id="yLKZntQ" resname="Parents">
         <source>Parents</source>
-        <target>__Parents</target>
+        <target>Padres</target>
       </trans-unit>
       <trans-unit id="pprcbBj" resname="You haven't created any persons yet.">
         <source>You haven't created any persons yet.</source>
@@ -103,173 +103,173 @@
       </trans-unit>
       <trans-unit id="8A3eGOh" resname="Create person">
         <source>Create person</source>
-        <target>__Create person</target>
+        <target>Crear ficha</target>
       </trans-unit>
       <trans-unit id="GD1jSvk" resname="Edit person">
         <source>Edit person</source>
-        <target>__Edit person</target>
+        <target>Editar perfil</target>
       </trans-unit>
       <trans-unit id=".3SWAFD" resname="View person">
         <source>View person</source>
-        <target>__View person</target>
+        <target>Ver perfil</target>
       </trans-unit>
       <trans-unit id="_QFhl7q" resname="Son of">
         <source>Son of</source>
-        <target>__Son of</target>
+        <target>Descendiente de</target>
       </trans-unit>
       <trans-unit id="kXTqD.i" resname="and of">
         <source>and of</source>
-        <target>__and of</target>
+        <target>y de</target>
       </trans-unit>
       <trans-unit id="DTMdhYd" resname="Treatment">
         <source>Treatment</source>
-        <target>__Treatment</target>
+        <target>Tratamiento</target>
       </trans-unit>
       <trans-unit id="3NHVIj9" resname="Name">
         <source>Name</source>
-        <target>__Name</target>
+        <target>Nombre</target>
       </trans-unit>
       <trans-unit id="LFv1deS" resname="Lastnames">
         <source>Lastnames</source>
-        <target>__Lastnames</target>
+        <target>Apellidos</target>
       </trans-unit>
       <trans-unit id="WXzoaGl" resname="Birthdate">
         <source>Birthdate</source>
-        <target>__Birthdate</target>
+        <target>Fecha de nacimiento</target>
       </trans-unit>
       <trans-unit id="fa_5Ohq" resname="Birthplace">
         <source>Birthplace</source>
-        <target>__Birthplace</target>
+        <target>Lugar de nacimiento</target>
       </trans-unit>
       <trans-unit id="ShVu.lE" resname="Deceased date">
         <source>Deceased date</source>
-        <target>__Deceased date</target>
+        <target>Fecha de deceso</target>
       </trans-unit>
       <trans-unit id="kckZKsM" resname="Deseace place">
         <source>Deseace place</source>
-        <target>__Deseace place</target>
+        <target>Lugar de deceso</target>
       </trans-unit>
       <trans-unit id="NYOjWKW" resname="Children">
         <source>Children</source>
-        <target>__Children</target>
+        <target>Descendientes</target>
       </trans-unit>
       <trans-unit id="gFMyEoH" resname="Child">
         <source>Child</source>
-        <target>__Child</target>
+        <target>Descendiente</target>
       </trans-unit>
       <trans-unit id="y.oYnX9" resname="Save gallery">
         <source>Save gallery</source>
-        <target>__Save gallery</target>
+        <target>Guardar galería</target>
       </trans-unit>
       <trans-unit id="h3J5JKK" resname="Edit gallery">
         <source>Edit gallery</source>
-        <target>__Edit gallery</target>
+        <target>Editar galería</target>
       </trans-unit>
       <trans-unit id="_Xa9VvD" resname="Create gallery">
         <source>Create gallery</source>
-        <target>__Create gallery</target>
+        <target>Crear galería</target>
       </trans-unit>
       <trans-unit id="tlvZ67B" resname="Delete gallery">
         <source>Delete gallery</source>
-        <target>__Delete gallery</target>
+        <target>Eliminar galería</target>
       </trans-unit>
       <trans-unit id="I7ZypVq" resname="This action can't be undone. Are you sure you want to proceed?">
         <source>This action can't be undone. Are you sure you want to proceed?</source>
-        <target>__This action can't be undone. Are you sure you want to proceed?</target>
+        <target>Esta acción es irreversible. ¿Está seguro que desea continuar?</target>
       </trans-unit>
       <trans-unit id="UaWt4Zt" resname="Removed successfully">
         <source>Removed successfully</source>
-        <target>__Removed successfully</target>
+        <target>Eliminado con éxito</target>
       </trans-unit>
       <trans-unit id="Roenwbm" resname="Gallery title">
         <source>Gallery title</source>
-        <target>__Gallery title</target>
+        <target>Título de la galería</target>
       </trans-unit>
       <trans-unit id="NCisuaB" resname="Add pictures to gallery">
         <source>Add pictures to gallery</source>
-        <target>__Add pictures to gallery</target>
+        <target>Añadir imágenes a la galería</target>
       </trans-unit>
       <trans-unit id="lC2_2pF" resname="Biography">
         <source>Biography</source>
-        <target>__Biography</target>
+        <target>Biografía</target>
       </trans-unit>
       <trans-unit id="4r1tQGo" resname="Add favourite">
         <source>Add favourite</source>
-        <target>__Add favourite</target>
+        <target>Añadir favorito</target>
       </trans-unit>
       <trans-unit id="UAge8eS" resname="Favourite type">
         <source>Favourite type</source>
-        <target>__Favourite type</target>
+        <target>Tipo de favorito</target>
       </trans-unit>
       <trans-unit id="ipvoB0G" resname="actors, movies, books...">
         <source>actors, movies, books...</source>
-        <target>__actors, movies, books...</target>
+        <target>actores, películas, libros ...</target>
       </trans-unit>
       <trans-unit id="2X1R03C" resname="Favourites">
         <source>Favourites</source>
-        <target>__Favourites</target>
+        <target>Favoritos</target>
       </trans-unit>
       <trans-unit id="OltquJT" resname="Nicknames">
         <source>Nicknames</source>
-        <target>__Nicknames</target>
+        <target>Apodos</target>
       </trans-unit>
       <trans-unit id="unNayER" resname="Add nichnames separated by commas">
         <source>Add nichnames separated by commas</source>
-        <target>__Add nichnames separated by commas</target>
+        <target>Añadir apodos separados por comas</target>
       </trans-unit>
       <trans-unit id="lF1c7c0" resname="Father of">
         <source>Father of</source>
-        <target>__Father of</target>
+        <target>Padre de</target>
       </trans-unit>
       <trans-unit id="ejuyTnN" resname="Mother of">
         <source>Mother of</source>
-        <target>__Mother of</target>
+        <target>Madre de</target>
       </trans-unit>
       <trans-unit id="DKsNmc2" resname="Parent to">
         <source>Parent to</source>
-        <target>__Parent to</target>
+        <target>Ascendiente de</target>
       </trans-unit>
       <trans-unit id="pb5wMa4" resname="Show family tree">
         <source>Show family tree</source>
-        <target>__Show family tree</target>
+        <target>Mostrar árbol de familia</target>
       </trans-unit>
-      <trans-unit id="lkaGWKT" resname="&lt;strong&gt;NAME_PLACEHOLDER LASTNAME_PLACEHOLDER&lt;/strong&gt; (BIRTHDATE_PLACEHOLDER&#13;&#10;            in BIRTHPLACE_PLACEHOLDER - DEATHDATE_PLACEHOLDER in DEATHPLACE_PLACEHOLDER). PARENTS_PLACEHOLDER. CHILDREN_PLACEHOLDER">
-        <source>&lt;strong&gt;NAME_PLACEHOLDER LASTNAME_PLACEHOLDER&lt;/strong&gt; (BIRTHDATE_PLACEHOLDER&#13;
+      <trans-unit id="7NBZewB" resname="&lt;strong&gt;NAME_PLACEHOLDER LASTNAME_PLACEHOLDER&lt;/strong&gt; (BIRTHDATE_PLACEHOLDER&#10;            in BIRTHPLACE_PLACEHOLDER - DEATHDATE_PLACEHOLDER in DEATHPLACE_PLACEHOLDER). PARENTS_PLACEHOLDER. CHILDREN_PLACEHOLDER">
+        <source>&lt;strong&gt;NAME_PLACEHOLDER LASTNAME_PLACEHOLDER&lt;/strong&gt; (BIRTHDATE_PLACEHOLDER
             in BIRTHPLACE_PLACEHOLDER - DEATHDATE_PLACEHOLDER in DEATHPLACE_PLACEHOLDER). PARENTS_PLACEHOLDER. CHILDREN_PLACEHOLDER</source>
         <target><![CDATA[__<strong>NAME_PLACEHOLDER LASTNAME_PLACEHOLDER</strong> (BIRTHDATE_PLACEHOLDER
-            in BIRTHPLACE_PLACEHOLDER - DEATHDATE_PLACEHOLDER in DEATHPLACE_PLACEHOLDER). PARENTS_PLACEHOLDER. CHILDREN_PLACEHOLDER]]></target>
+            en BIRTHPLACE_PLACEHOLDER - DEATHDATE_PLACEHOLDER en DEATHPLACE_PLACEHOLDER). PARENTS_PLACEHOLDER. CHILDREN_PLACEHOLDER]]></target>
       </trans-unit>
       <trans-unit id="bAksnKA" resname="Basic information">
         <source>Basic information</source>
-        <target>__Basic information</target>
+        <target>Información básica</target>
       </trans-unit>
       <trans-unit id="vS1ney7" resname="Family">
         <source>Family</source>
-        <target>__Family</target>
+        <target>Familia</target>
       </trans-unit>
       <trans-unit id="MUXZCZ2" resname="Extra information">
         <source>Extra information</source>
-        <target>__Extra information</target>
+        <target>Información extra</target>
       </trans-unit>
       <trans-unit id="9uJH360" resname="Galleries">
         <source>Galleries</source>
-        <target>__Galleries</target>
+        <target>Galerías</target>
       </trans-unit>
       <trans-unit id="pseoS6p" resname="Finish">
         <source>Finish</source>
-        <target>__Finish</target>
+        <target>Finalizar perfil</target>
       </trans-unit>
       <trans-unit id="uHrgX_w" resname="Masculine">
         <source>Masculine</source>
-        <target>__Masculine</target>
+        <target>Masculino</target>
       </trans-unit>
       <trans-unit id="bo6oXP." resname="Femenine">
         <source>Femenine</source>
-        <target>__Femenine</target>
+        <target>Femenino</target>
       </trans-unit>
       <trans-unit id="HGrGnx5" resname="Neutral">
         <source>Neutral</source>
-        <target>__Neutral</target>
+        <target>Neutro</target>
       </trans-unit>
     </body>
   </file>

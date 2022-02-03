@@ -20,9 +20,6 @@ export default {
     updatePerson: function (personData) {
         return axios.put('/api/people/' + personData.id, personData);
     },
-    getLabels: function () {
-        return axios.get('/api/people/labels');
-    },
     uploadPersonMainPicture: function (personId, personData) {
         return axios.post('/api/image/' + personId + '/person', personData);
     },

@@ -8,10 +8,10 @@
         </b-row>
         <b-row v-else>
             <p>
-          {{ labels.no_persons }}
+          {{ personLabels.no_persons }}
         </p>
         <b-button variant="primary" :to="{ name: 'CreatePerson' }">{{
-          labels.create_person
+          personLabels.create_memorial
         }}</b-button>
         </b-row>
     </b-col>
@@ -28,8 +28,8 @@ export default{
         persons(){
             return this.$store.getters["person/persons"];
         },
-        labels() {
-            return this.$store.getters["person/personLabels"];
+        personLabels() {
+            return this.$store.getters["label/personLabels"];
         },  
     }
 }

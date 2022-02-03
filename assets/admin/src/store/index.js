@@ -6,6 +6,8 @@ import PersonModule from './person';
 import FamiliarModule from './familiar';
 import ProductModule from './product';
 import SubscriptionModule from './subscription';
+import NoteModule from './note';
+import LabelModule from './label';
 
 Vue.use(Vuex);
 
@@ -15,6 +17,8 @@ export default new Vuex.Store({
         security: SecurityModule,
         familiar: FamiliarModule,
         product: ProductModule,
-        subscription: SubscriptionModule
+        subscription: SubscriptionModule,
+        note: NoteModule,
+        label: LabelModule
     }
 });

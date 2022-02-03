@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 
 /**
@@ -21,27 +22,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
+    #[Groups(["person:read"])]
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
+    #[Groups(["person:read"])]
     private $email;
 
     /**
      * @ORM\Column(type="json")
      */
+    #[Groups(["person:read"])]
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
+    #[Groups(["person:read"])]
     private $password;
 
     /**
      * @ORM\Column(type="boolean")
      */
+    #[Groups(["person:read"])]
     private $isVerified = false;
 
     /**

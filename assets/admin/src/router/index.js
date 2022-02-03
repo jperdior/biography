@@ -54,7 +54,8 @@ const routes = [
         component: () => import('../views/Checkout/Checkout.vue')
     },
     { path: "/login", name: 'Login', component: Login },
-    { path: "/register", name: 'Register', component: Register }
+    { path: "/register", name: 'Register', component: Register },
+    { path: "/about", name: 'About', component: () => import('../views/About.vue') },
 ];
 
 const router = new VueRouter({
@@ -62,10 +63,13 @@ const router = new VueRouter({
     routes
 });
 
+
+
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
         // this route requires auth, check if logged in
         // if not, redirect to login page.
+        console.log(store.getters["security/isAuthenticated"]);
         if (store.getters["security/isAuthenticated"]) {
             next();
         } else {

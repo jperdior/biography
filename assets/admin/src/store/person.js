@@ -9,9 +9,6 @@ const CREATING_PERSON = 'CREATING_PERSON',
     UPDATING_PERSON = 'UPDATING_PERSON',
     UPDATING_PERSON_SUCCESS = 'UPDATING_PERSON_SUCCESS',
     UPDATING_PERSON_ERROR = 'UPDATING_PERSON_ERROR',
-    GETTING_PERSON_LABELS = 'GETTING_PERSON_LABELS',
-    GETTING_PERSON_LABELS_SUCCESS = 'GETTING_PERSON_LABELS_SUCCESS',
-    GETTING_PERSON_LABELS_ERROR = 'GETTING_PERSON_LABELS_ERROR',
     GETTING_PERSONS = 'GETTING_PERSONS',
     GETTING_PERSONS_SUCCESS = 'GETTING_PERSONS_SUCCESS',
     GETTING_PERSONS_ERROR = 'GETTING_PERSONS_ERROR',
@@ -23,7 +20,7 @@ export default {
     namespaced: true,
     state: {
         persons: [],
-        person: {},
+        person: null,
         mainPerson: {},
         personLabels: {},
         loading: false,
@@ -35,7 +32,6 @@ export default {
         mainPerson: state => state.mainPerson,
         loading: state => state.loading,
         error: state => state.error,
-        personLabels: state => state.personLabels
     },
     mutations: {
         [CREATING_PERSON](state) {
@@ -74,19 +70,6 @@ export default {
         [UPDATING_PERSON_ERROR](state, error) {
             state.loading = false;
             state.error = error;
-        },
-        [GETTING_PERSON_LABELS](state) {
-            state.loading = true;
-            state.error = null;
-        },
-        [GETTING_PERSON_LABELS_SUCCESS](state, personLabels) {
-            state.loading = false;
-            state.personLabels = personLabels;
-        },
-        [GETTING_PERSON_LABELS_ERROR](state, error) {
-            state.loading = false;
-            state.error = error;
-            state.personLabels = null;
         },
         [GETTING_PERSONS](state) {
             state.loading = true;
@@ -152,15 +135,6 @@ export default {
                 return response;
             } catch (error) {
                 commit(UPDATING_PERSON_ERROR, error);
-            }
-        },
-        async getPersonLabels({ commit }) {
-            commit(GETTING_PERSON_LABELS);
-            try {
-                const response = await PersonApi.getLabels();
-                commit(GETTING_PERSON_LABELS_SUCCESS, response.data);
-            } catch (error) {
-                commit(GETTING_PERSON_LABELS_ERROR, error);
             }
         },
         async getPersons({ commit }) {

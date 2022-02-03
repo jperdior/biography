@@ -1,6 +1,8 @@
 <template>
   <span>
-    <b-button @click="showFamilyTree()">{{ labels.show_family_tree }}</b-button>
+    <b-button @click="showFamilyTree()">{{
+      personLabels.show_family_tree
+    }}</b-button>
     <b-modal ref="familyTreeModal" size="lg">
       <b-row>
         <b-col>
@@ -25,8 +27,8 @@ export default {
     },
   },
   computed: {
-    labels() {
-      return this.$store.getters["person/personLabels"];
+    personLabels() {
+      return this.$store.getters["label/personLabels"];
     },
     tree() {
       let tree = [];

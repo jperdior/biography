@@ -1,16 +1,18 @@
 <template>
-  <b-container>
-    <person-viewer :person="person"></person-viewer>
-  </b-container>
+  <b-row no-gutters>
+    <b-col>
+      <person-viewer v-if="person" :person="person"></person-viewer>
+    </b-col>
+  </b-row>
 </template>
 <script>
-import PersonViewer from "../../components/Person/PersonViewer.vue";
+import PersonViewer from "../../components/Person/Viewer/PersonViewer.vue";
 export default {
   name: "ViewPublicPerson",
   components: {
     PersonViewer,
   },
-  mounted() {
+  created() {
     this.$store.dispatch("person/getPerson", this.$route.params.id);
   },
   computed: {
