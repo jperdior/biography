@@ -43,10 +43,36 @@ class LabelService{
 
     public function getProductLabels(): array{
         $labels = [
+            'choose_font' => $this->translator->trans('Choose typography'),
+            'choose_material' => $this->translator->trans('Choose material'),
+            'choose_size' => $this->translator->trans('Choose size'),
             'quantity' => $this->translator->trans('Quantity'),
             'checkout' => $this->translator->trans('Checkout'),
             'maintenance_explanation' => $this->translator->trans('For maintenance purposes we do need a symbolic fee subscription.'),
             'extra_products_explanation' => $this->translator->trans('You can also order a memorial plate here.'),
+            'customize_memorial_plate' => $this->translator->trans('Customize your commemorative plate here'),
+            'material_options' => [
+                [
+                    'value' => 'steel',
+                    'text' => $this->translator->trans('Steel'),
+                ],
+                [
+                    'value' => 'brass',
+                    'text' => $this->translator->trans('Brass'),
+                ],
+                [
+                    'value' => 'aluminum',
+                    'text' => $this->translator->trans('Aluminum'),
+                ],
+                [
+                    'value' => 'methacrylate',
+                    'text' => $this->translator->trans('Methacrylate'),
+                ],
+                [
+                    'value' => 'acrilic',
+                    'text' => $this->translator->trans('Acrilic'),
+                ],
+            ]
         ];
         return $labels;
     }

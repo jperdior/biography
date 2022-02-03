@@ -33,7 +33,7 @@ class DefaultController extends AbstractController
         if (! empty($user)) {
             $userClone = clone $user;
             $userClone->setPassword('');
-            $data = $this->serializer->serialize($userClone, JsonEncoder::FORMAT,['circular_reference_handler'=> function($object){
+            $data = $this->serializer->serialize($userClone, JsonEncoder::FORMAT,['groups'=>['user:read'],  'circular_reference_handler'=> function($object){
             return $object->getId();
         }]);
         }

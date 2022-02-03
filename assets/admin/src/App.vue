@@ -44,10 +44,6 @@ import axios from "axios";
 export default {
   name: "App",
   created() {
-    this.$store.dispatch("label/getPersonLabels");
-    this.$store.dispatch("label/getDefaultLabels");
-    this.$store.dispatch("label/getProductLabels");
-    this.$store.dispatch("label/getNoteLabels");
     let isAuthenticated = JSON.parse(
         this.$parent.$el.attributes["data-is-authenticated"].value
       ),
@@ -55,6 +51,11 @@ export default {
 
     let payload = { isAuthenticated: isAuthenticated, user: user };
     this.$store.dispatch("security/onRefresh", payload);
+
+    this.$store.dispatch("label/getPersonLabels");
+    this.$store.dispatch("label/getDefaultLabels");
+    this.$store.dispatch("label/getProductLabels");
+    this.$store.dispatch("label/getNoteLabels");
 
     axios.interceptors.response.use(undefined, (err) => {
       return new Promise(() => {

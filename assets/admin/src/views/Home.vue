@@ -8,7 +8,7 @@
             :style="
               'display: flex;flex-flow: column; width: 100%; height: ' +
               windowHeight +
-              'px;background-image: url(\'/img/slide1-min.jpg\');background-size: cover;padding-top:70px;'
+              'px;padding-top:70px;'
             "
           >
             <div
@@ -67,6 +67,7 @@
   </b-row>
 </template>
 <script>
+//background-image: url(\'/img/slide1-min.jpg\');background-size: cover
 import LoginModal from "../components/LoginModal.vue";
 import RegisterModal from "../components/RegisterModal.vue";
 import carousel from "vue-owl-carousel";

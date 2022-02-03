@@ -555,4 +555,21 @@ class Person
         return $this;
     }
 
+    #[Groups(["person:read"])]
+    public function getCompletenessPercent(): int{
+        $percent = 0;
+        if($this->getName() && $this->getLastnames() && $this->getBirthdate() && $this->getDeathdate()){
+            $percent += 25;
+        }
+        if($this->getMainPicture()){
+            $percent += 25;
+        }
+        if($this->getParents()->count() > 0){
+            $percent += 25;
+        }
+        if($this->getDescription()){
+            $percent += 25;
+        }
+        return $percent;
+    }
 }

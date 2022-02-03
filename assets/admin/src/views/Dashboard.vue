@@ -3,17 +3,24 @@
     <b-tabs>
       <b-tab title="Vista general" active>
         <b-row>
-          <b-button
-            variant="success"
-            :to="{ name: 'EditPerson', params: { id: mainPerson.id } }"
-            >{{ personLabels.edit_memorial }}</b-button
-          >
-          <b-button
-            variant="info"
-            :to="{ name: 'Person', params: { id: mainPerson.id } }"
-          >
-            {{ personLabels.view_memorial }}
-          </b-button>
+          <b-col md="2">
+            <vue-ellipse-progress
+              :progress="mainPerson.completenessPercent"
+            ></vue-ellipse-progress>
+          </b-col>
+          <b-col>
+            <b-button
+              variant="success"
+              :to="{ name: 'EditPerson', params: { id: mainPerson.id } }"
+              >{{ personLabels.edit_memorial }}</b-button
+            >
+            <b-button
+              variant="info"
+              :to="{ name: 'Person', params: { id: mainPerson.id } }"
+            >
+              {{ personLabels.view_memorial }}
+            </b-button>
+          </b-col>
         </b-row>
         <b-row v-if="subscription">
           <b-col>
@@ -25,19 +32,12 @@
                 </p>
               </b-col>
             </b-row>
-            <b-row>
-              <b-col>
-                <p>
-                  {{ productLabels.extra_products_explanation }}
-                </p>
-              </b-col>
-            </b-row>
             <plate :person="mainPerson"></plate>
-            <b-row>
+            <!-- <b-row>
               <b-col>
                 <products @productsUpdated="productsUpdatedEvent"> </products>
               </b-col>
-            </b-row>
+            </b-row> -->
             <b-row>
               <b-col>
                 <b-button @click="checkout">{{
